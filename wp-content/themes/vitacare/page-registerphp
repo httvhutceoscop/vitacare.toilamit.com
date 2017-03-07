@@ -1,0 +1,55 @@
+<?php 
+/*
+Template Name: Register Page
+*/
+?>
+<?php
+
+get_header(); ?>
+
+	
+	<div class="container">
+	<div class="box-x">
+		 <div id="columns_left" class="box-single col-xs-12 col-sm-12 col-md-9 col-lg-9">
+		  	<?php if(is_user_logged_in()){ ?>
+
+		  	<?php }else{ ?>
+			<?php while ( have_posts() ) : the_post(); ?>
+
+				<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+					<header class="entry-header">
+						<?php if ( has_post_thumbnail() && ! post_password_required() ) : ?>
+						<div class="entry-thumbnail">
+							<?php the_post_thumbnail(); ?>
+						</div>
+						<?php endif; ?>
+
+						<h1 class="entry-title"><?php the_title(); ?></h1>
+					</header><!-- .entry-header -->
+					<div class="col-xs-12 col-sm-12 col-md-2 col-lg-2"></div>
+					<div class="col-xs-12 col-sm-12 col-md-10 col-lg-10">
+						<?php the_content(); ?>
+						<?php wp_link_pages( array( 'before' => '<div class="page-links"><span class="page-links-title">' . __( 'Pages:', 'twentythirteen' ) . '</span>', 'after' => '</div>', 'link_before' => '<span>', 'link_after' => '</span>' ) ); ?>
+					</div><!-- .entry-content -->
+					
+					<footer class="entry-meta">
+						<?php edit_post_link( __( 'Edit', 'twentythirteen' ), '<span class="edit-link">', '</span>' ); ?>
+					</footer><!-- .entry-meta -->
+				</article><!-- #post -->
+
+				<?php comments_template(); ?>
+			<?php endwhile; ?>
+			<?php } ?>
+		</div>
+		
+		
+		<div id="columns_right" class="col-sm-3 hidden-xs">
+			<?php if ( is_active_sidebar( 'right-sidebar' ) ) : ?>
+                <?php dynamic_sidebar( 'right-sidebar' ); ?>
+			<?php endif; ?>
+		</div>
+	</div>
+	 </div>
+
+<?php get_footer(); ?>
+

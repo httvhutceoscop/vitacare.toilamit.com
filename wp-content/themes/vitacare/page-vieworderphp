@@ -1,0 +1,88 @@
+<?php 
+/*
+ Template Name: View Order
+ */
+get_header(); 
+$id_order = $_GET['id_order'];
+global $wpdb;
+?>
+
+	
+	<div class="container">
+		
+		 <div id="columns_left" class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
+			<?php if($id_order != 0){
+				$sql_order = $wpdb->get_results("SELECT * FROM xtl_order WHERE id_order=$id_order");
+				$sql_order_detail = $wpdb->get_results("SELECT * FROM xtl_order_detail WHERE id_order=$id_order");
+			?>
+				<div class="order_detail col-xs-12 col-sm-12 col-md-12 col-lg-12">
+					<div class="info_order_detail col-xs-12 col-sm-12 col-md-12 col-lg-12">
+						<h3>Đơn đặt hàng</h3>
+						<ul>
+							
+						<?php
+						$ship = 0;
+						foreach ($sql_order as $key => $value) { ?>
+							<li class="col-xs-12 col-sm-6 col-md-6 col-lg-6">Khách hàng: <?php echo $value->name;?></li>
+							<li class="col-xs-12 col-sm-6 col-md-6 col-lg-6">Số điện thoại: <?php echo $value->phone;?></li>
+							<li class="col-xs-12 col-sm-6 col-md-6 col-lg-6">Địa chỉ: <?php echo $value->dia_chi;?></li>
+							<li class="col-xs-12 col-sm-6 col-md-6 col-lg-6">Email: <?php echo $value->email;?></li>
+						<?php $ship = $value->shipping;} ?>
+						</ul>
+					</div>
+					<p class="col-xs-12 col-sm-12 col-md-12 col-lg-12">Danh sách các sản phẩm:</p>
+					<div class="content_order_detail">
+						
+						<ul class="header_order_detail">
+
+							<li class="col-xs-1 col-sm-1 col-md-1 col-lg-1">STT</li>
+							<li class="col-xs-6 col-sm-6 col-md-6 col-lg-6">Tên sản phẩm</li>
+							<li class="col-xs-1 col-sm-1 col-md-1 col-lg-1">Số lượng</li>
+							<li class="col-xs-2 col-sm-2 col-md-2 col-lg-2">Đơn giá</li>
+							<li class="col-xs-2 col-sm-2 col-md-2 col-lg-2">Thành tiền</li>
+						</ul>
+						<?php 
+						$i = 1;
+						$total = 0;
+						foreach ($sql_order_detail as $key => $value) { ?>
+						<ul class="list_order_detail">
+							<li class="col-xs-1 col-sm-1 col-md-1 col-lg-1"><?php echo $i;?></li>
+							<li class="ten_sp col-xs-6 col-sm-6 col-md-6 col-lg-6"><?php echo $value->ten_sp;?></li>
+							<li class="col-xs-1 col-sm-1 col-md-1 col-lg-1"><?php echo $value->so_luong;?></li>
+							<li class="don_gia col-xs-2 col-sm-2 col-md-2 col-lg-2"><?php echo $value->gia;?></li>
+							<li class="thanh_tien col-xs-2 col-sm-2 col-md-2 col-lg-2"><?php echo $value->gia*$value->so_luong;?></li>
+						</ul>
+						<?php 
+						$total +=$value->gia*$value->so_luong;
+						$i++; } ?>
+						<ul class="tien_ship">
+							<li class="col-xs-10 col-sm-10 col-md-10 col-lg-10">Phí vận chuyển</li>
+							<li class="col-xs-2 col-sm-2 col-md-2 col-lg-2"><?php echo $ship;?></li>
+						</ul>
+						<ul class="total">
+							<li class="col-xs-10 col-sm-10 col-md-10 col-lg-10">Tổng tiền thanh toán</li>
+							<li class="col-xs-2 col-sm-2 col-md-2 col-lg-2"><?php echo $total+$ship;?></li>
+						</ul>
+					</div>
+					<div class="dieu_huong">
+						<ul>
+							<li><a href="<?php bloginfo('url');?>">Trang chủ</a><a href="<?php bloginfo('url');?>/myaccount">Tài khoản của tôi</a></li>
+						</ul>
+					</div>
+				</div>
+			<?php
+			}else{
+
+				}
+			?>
+		</div>
+		
+		
+		<div id="columns_right" class="col-sm-3 hidden-xs">
+			<?php if ( is_active_sidebar( 'right-sidebar' ) ) : ?>
+                <?php dynamic_sidebar( 'right-sidebar' ); ?>
+			<?php endif; ?>
+		</div>
+		
+	</div>
+<?php get_footer(); ?>

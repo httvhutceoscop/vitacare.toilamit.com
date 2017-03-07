@@ -1,0 +1,147 @@
+<?php 
+/*
+Template Name: Login page
+*/
+?>
+<?php get_header(); ?>
+	<div class="container">
+		
+		 	<div id="columns_left" class="box-single col-xs-12 col-sm-12 col-md-9 col-lg-9">
+				<?php if(is_user_logged_in()) { 
+					$user_id = get_current_user_id();$current_user = wp_get_current_user();$profile_url = get_author_posts_url($user_id);$edit_profile_url  = get_edit_profile_url($user_id); ?>
+				    <div class="regted">
+				    	Bạn đã đăng nhập với tên nick <a href="<?php bloginfo('url'); ?>"><?php echo $current_user->display_name; ?></a>. Bạn có muốn <a href="<?php echo esc_url(wp_logout_url($current_url)); ?>">Thoát</a> không ?
+				    </div>
+				<?php } else { ?>
+					<div class="formdangnhap">
+					    <?php wp_login_form(); ?>
+					    <!-- <div class="formdangnhap col-xs-12 col-sm-6 col-md-7 col-lg-7">
+					    								<h3>Đăng nhập tài khoản</h3>
+					    							    <?php wp_login_form(); ?>
+					    							    <form action="" id="loginform" name="loginform" method="post" accept-charset="utf-8">
+					    							    	<li>Tên đăng nhập</li>
+					    								    <li><input type="text" name="log" id="user_login" class="input" value="" size="50"></li>
+					    								    <li>Mật khẩu</li>
+					    								    <li><input type="password" name="pwd" id="user_pass" class="input" value="" size="50"></li>
+					    								    <li><input type="submit" name="wp-submit" id="wp-submit" class="button-primary" value="Đăng nhập">
+					    							    </form>	
+					    							    
+					    							    <p>Bạn chưa có tài khoản? Click <a href="<?php bloginfo('url'); ?>/register"><strong>tại đây</strong></a> để đăng ký tài khoản.</p>
+					    							</div> -->
+					    <p>Don't have an account? Click <a href="<?php bloginfo('url'); ?>/register"><strong>here</strong></a> to register.</p>
+              <?php do_action('facebook_login_button');?>
+					</div>
+				<?php } ?>
+			</div>
+			<div id="columns_right" class="col-sm-3 hidden-xs">
+				<?php if ( is_active_sidebar( 'right-sidebar' ) ) : ?>
+	                <?php dynamic_sidebar( 'right-sidebar' ); ?>
+				<?php endif; ?>
+			</div>
+		
+	</div><!-- .content -->
+
+
+<?php get_footer(); ?>
+<!DOCTYPE html>
+<html>
+<head>
+<title>Facebook Login JavaScript Example</title>
+<meta charset="UTF-8">
+</head>
+<body>
+<script>
+  // This is called with the results from from FB.getLoginStatus().
+  function statusChangeCallback(response) {
+    console.log('statusChangeCallback');
+    console.log(response);
+    // The response object is returned with a status field that lets the
+    // app know the current login status of the person.
+    // Full docs on the response object can be found in the documentation
+    // for FB.getLoginStatus().
+    if (response.status === 'connected') {
+      // Logged into your app and Facebook.
+      testAPI();
+    } else if (response.status === 'not_authorized') {
+      // The person is logged into Facebook, but not your app.
+      document.getElementById('status').innerHTML = 'Please log ' +
+        'into this app.';
+    } else {
+      // The person is not logged into Facebook, so we're not sure if
+      // they are logged into this app or not.
+      document.getElementById('status').innerHTML = 'Please log ' +
+        'into Facebook.';
+    }
+  }
+
+  // This function is called when someone finishes with the Login
+  // Button.  See the onlogin handler attached to it in the sample
+  // code below.
+  function checkLoginState() {
+    FB.getLoginStatus(function(response) {
+      statusChangeCallback(response);
+    });
+  }
+
+  window.fbAsyncInit = function() {
+  FB.init({
+    appId      : '{your-app-id}',
+    cookie     : true,  // enable cookies to allow the server to access 
+                        // the session
+    xfbml      : true,  // parse social plugins on this page
+    version    : 'v2.5' // use graph api version 2.5
+  });
+
+  // Now that we've initialized the JavaScript SDK, we call 
+  // FB.getLoginStatus().  This function gets the state of the
+  // person visiting this page and can return one of three states to
+  // the callback you provide.  They can be:
+  //
+  // 1. Logged into your app ('connected')
+  // 2. Logged into Facebook, but not your app ('not_authorized')
+  // 3. Not logged into Facebook and can't tell if they are logged into
+  //    your app or not.
+  //
+  // These three cases are handled in the callback function.
+
+  FB.getLoginStatus(function(response) {
+    statusChangeCallback(response);
+  });
+
+  };
+
+  // Load the SDK asynchronously
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+
+  // Here we run a very simple test of the Graph API after login is
+  // successful.  See statusChangeCallback() for when this call is made.
+  function testAPI() {
+    console.log('Welcome!  Fetching your information.... ');
+    FB.api('/me', function(response) {
+      console.log('Successful login for: ' + response.name);
+      document.getElementById('status').innerHTML =
+        'Thanks for logging in, ' + response.name + '!';
+    });
+  }
+</script>
+
+<!--
+  Below we include the Login Button social plugin. This button uses
+  the JavaScript SDK to present a graphical Login button that triggers
+  the FB.login() function when clicked.
+-->
+
+<fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+</fb:login-button>
+
+<div id="status">
+</div>
+
+</body>
+</html>

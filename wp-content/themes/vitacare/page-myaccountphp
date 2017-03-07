@@ -1,0 +1,150 @@
+<?php 
+/*
+Template Name: Myaccount Page
+*/
+?>
+<?php
+
+get_header(); ?>
+<?php
+	global $current_user;
+    get_currentuserinfo();
+    $user_id = $current_user->id;
+?>	
+	
+	<div class="container">
+	<div class="box-x">
+		 <div id="columns_left" class="box-single col-xs-12 col-sm-12 col-md-9 col-lg-9">
+		 <?php if(is_user_logged_in()){ ?>
+		  	<div class="top_user col-xs-12 col-sm-12 col-md-12 col-lg-12">
+				<div class="top_user_left col-xs-12 col-sm-12 col-md-8 col-lg-8"><h2>Thông tin tài khoản</h2></div>
+				<div class="top_user_right col-xs-12 col-sm-12 col-md-4 col-lg-4"><a href="/wp-login.php?action=logout&_wpnonce=b31843ed56">Logout?</a></div>
+		  	</div>
+		  	<div class="note_user">
+		  		<h3>Xin chào, <?php echo $current_user->display_name;?>. Bạn đang đăng nhập với <?php echo $current_user->user_email;?> (<a href="/wp-login.php?action=logout&_wpnonce=b31843ed56">Logout</a>)</h3>
+		  		<p>Tại đây, bạn có thể cập nhật thông tin chi tiết của bạn, thay đổi mật khẩu. Bạn cũng có thể kiểm tra tình trạng đơn hàng và thanh toán.</p>
+		  		<p>Nếu bạn cần giúp đỡ? Hãy <strong>liên hệ</strong> với chúng tôi.
+		  	</div>
+		  	<div class="content_user col-xs-12 col-sm-12 col-md-12 col-lg-12">
+				<div class="product_tab col-xs-12 col-sm-12 col-md-12 col-lg-12">
+					<li class="col-xs-12 col-sm-12 col-md-2 col-lg-2"><a href="#tabsintroduction" title="introduction" class="active tab">Thông tin chung</a></li>
+					<!-- <li class="col-xs-12 col-sm-12 col-md-2 col-lg-2"><a href="#tabs" title="ingredients" class="tab">Chỉnh sửa thông tin</a></li> -->
+					<li class="col-xs-12 col-sm-12 col-md-2 col-lg-2"><a href="#tabsorder" title="order" class="tab">Đơn hàng</a></li>
+					<li class="col-xs-12 col-sm-12 col-md-2 col-lg-2"><a href="#tabspayment" title="payment" class="tab">Thanh toán</a></li>
+					<li class="col-xs-12 col-sm-12 col-md-2 col-lg-2"><a href="#tabsreviews" title="reviews" class="tab">Vitacare Club</a></li>
+					<li class="col-xs-12 col-sm-12 col-md-2 col-lg-2"><a href="#tabsdirections" title="directions" class="tab">Thay đổi mật khẩu</a></li>
+					<li class="col-xs-12 col-sm-12 col-md-2 col-lg-2"><a href="#tabsmoreinfo" title="moreinfo" class="tab">Giúp đỡ</a></li>
+				</div>
+				<div id="introduction" class="content-sp">
+					<ul>
+						<li class="chan col-xs-12 col-sm-12 col-md-12 col-lg-12"><label class="lbl_left">Họ tên: </label><?php echo $current_user->user_firstname;?> <?php echo $current_user->user_lastname;?></li>
+						<li class="le col-xs-12 col-sm-12 col-md-12 col-lg-12"><label class="lbl_left">Email: </label><?php echo $current_user->user_email;?></li>
+						<li class="chan col-xs-12 col-sm-12 col-md-12 col-lg-12"><label class="lbl_left">Số điện thoại: </label><?php echo $current_user->phone;?></li>
+						<li class="le col-xs-12 col-sm-12 col-md-12 col-lg-12"><label class="lbl_left">Địa chỉ: </label><?php echo $current_user->address;?></li>
+						<li class="chan col-xs-12 col-sm-12 col-md-12 col-lg-12"><label class="lbl_left">Thành viên: </label></li>
+					</ul>
+					<h3>Cập nhật thông tin</h3>
+					<form action="" method="post" accept-charset="utf-8">
+						<ul>
+							<li class="chan col-xs-12 col-sm-12 col-md-12 col-lg-12"><label class="lbl_left">Họ: </label><input type="text" name="ho" size="50" value="<?php echo $current_user->user_firstname;?>" class="form-control"></li>
+							<li class="le col-xs-12 col-sm-12 col-md-12 col-lg-12"><label class="lbl_left">Tên: </label><input type="text" name="ho" size="50" value="<?php echo $current_user->user_lastname;?>" class="form-control"></li>
+							<li class="chan col-xs-12 col-sm-12 col-md-12 col-lg-12"><label class="lbl_left">Email: </label><input type="text" name="ho" size="50" value="<?php echo $current_user->user_email;?>" class="form-control"></li>
+							<li class="le col-xs-12 col-sm-12 col-md-12 col-lg-12"><label class="lbl_left">Số điện thoại: </label><input type="text" name="ho" size="50" value="<?php echo $current_user->phone;?>" class="form-control"></li>
+							<li class="chan col-xs-12 col-sm-12 col-md-12 col-lg-12"><label class="lbl_left">Địa chỉ: </label><input type="text" name="ho" size="50" value="<?php echo $current_user->address;?>" class="form-control"></li>
+							<li class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="text-align: center;margin-top:10px;"><input type="submit" name="capnhatthongtin" value="Cập nhật thông tin"></li>
+						</ul>
+					</form>
+				</div>
+				<div id="ingredients" class="content-sp">
+					<form action="" method="post" accept-charset="utf-8">
+						<ul>
+							<li><label class="lbl_left">Họ: </label><input type="text" name="ho" size="50" value="<?php echo $current_user->user_firstname;?>" class="form-control"></li>
+							<li><label class="lbl_left">Tên: </label><input type="text" name="ho" size="50" value="<?php echo $current_user->user_lastname;?>" class="form-control"></li>
+							<li><label class="lbl_left">Email: </label><input type="text" name="ho" size="50" value="<?php echo $current_user->user_email;?>" class="form-control"></li>
+							<li><label class="lbl_left">Số điện thoại: </label><input type="text" name="ho" size="50" value="<?php echo $current_user->phone;?>" class="form-control"></li>
+							<li><label class="lbl_left">Địa chỉ: </label><input type="text" name="ho" size="50" value="<?php echo $current_user->address;?>" class="form-control"></li>
+							<li><input type="submit" name="capnhatthongtin" value="Cập nhật thông tin"></li>
+						</ul>
+					</form>
+				</div>
+				<div id="order" class="content-sp">
+					<?php
+						global $wpdb;
+						$query_order = $wpdb->get_results("SELECT * FROM xtl_order WHERE id_user = $user_id Order By id_order DESC");
+					?>
+					<div class="box_order">
+						<ul class="header_box col-xs-12 col-sm-12 col-md-12 col-lg-12">
+							<li class="col-xs-2 col-sm-2 col-md-2 col-lg-2">Mã Đơn Hàng</li>
+							<li class="col-xs-2 col-sm-2 col-md-2 col-lg-2">Khách Hàng</li>
+							<li class="col-xs-2 col-sm-2 col-md-2 col-lg-2">Tổng</li>
+							<li class="col-xs-2 col-sm-2 col-md-2 col-lg-2">Ngày Đặt</li>
+							<li class="col-xs-2 col-sm-2 col-md-2 col-lg-2">Trạng Thái</li>
+							<li class="col-xs-2 col-sm-2 col-md-2 col-lg-2">Thao Tác</li>
+						</ul>
+						<ul class="content_order">
+						<?php
+							$total = 0;
+							foreach ($query_order as $key => $value) {
+								
+								$query_order_detail = $wpdb->get_results("SELECT * FROM xtl_order_detail WHERE id_order = $value->id_order");
+
+								foreach ($query_order_detail as $key => $value2) {
+									$total = $total + ($value2->gia * $value2->so_luong);
+								}
+						?>
+							<li class="col-xs-2 col-sm-2 col-md-2 col-lg-2"><?php echo $value->id_order;?></li>
+							<li class="col-xs-2 col-sm-2 col-md-2 col-lg-2"><?php echo $value->name;?></li>
+							<li class="col-xs-2 col-sm-2 col-md-2 col-lg-2"><?php echo $value2->total;?></li>
+							<li class="col-xs-2 col-sm-2 col-md-2 col-lg-2"><?php echo date("d-m-Y",$value->create_date);?></li>
+							<li class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+							<?php 
+								if($value->status == 0){
+									echo "Đang chờ";
+								}else{
+									echo "Đã xử lý xong";
+								}
+							?>
+							</li>
+							<li class="col-xs-2 col-sm-2 col-md-2 col-lg-2"><a href="/vieworder?id_order=<?php echo $value->id_order;?>" target="blank"><i class="view_detail"></i></a></li>
+						<?php
+							}
+						?>
+						</ul>
+					</div>
+				</div>
+				<div id="payment" class="content-sp">
+					Payment
+				</div>
+				<div id="reviews" class="content-sp"><?php echo get_field('reviews');?></div>
+				<div id="directions" class="content-sp">
+					<h3>Nhập mật khẩu hiện tại của bạn để thay đổi mật khẩu</h3>
+					<form action="" method="post" accept-charset="utf-8">
+						<ul class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+							<li class="col-xs-12 col-sm-12 col-md-12 col-lg-12">Mật khẩu đang sử dụng:<input type="password" name="password_old" size="50" value="<?php echo $current_user->user_pass;?>" class="form-control"></li>
+							<li class="col-xs-12 col-sm-12 col-md-12 col-lg-12">Mật khẩu mới: <input type="password" name="password_new1" size="50" value="" class="form-control" placeholder="Nhập mật khẩu mới"></li>
+							<li class="col-xs-12 col-sm-12 col-md-12 col-lg-12">Nhập lại mật khẩu mới: <input type="password" name="password_new2" size="50" value="" class="form-control" placeholder="Nhập lại mật khẩu mới"></li>
+							<li class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="width:100%;text-align:center;margin-top:10px;"><input type="submit" name="thaydoimatkhau" value="Thay đổi mật khẩu"></li>
+						</ul>
+					</form>
+				</div>
+				<div id="moreinfo" class="content-sp"><?php echo get_field('more_info');?></div>
+		  	</div>
+		  	<?php }else { ?>
+		  		<script type="text/javascript">
+			   	// Javascript URL redirection
+			    window.location.replace("/login");
+			</script>
+		  	<?php } ?>
+		</div>
+		
+		
+		<div id="columns_right" class="col-sm-3 hidden-xs">
+			<?php if ( is_active_sidebar( 'sidebar-footer-8' ) ) : ?>
+                <?php dynamic_sidebar( 'sidebar-footer-8' ); ?>
+			<?php endif; ?>
+		</div>
+	</div>
+</div>
+
+<?php get_footer(); ?>
+

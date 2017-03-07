@@ -1,0 +1,420 @@
+<?php
+ob_start();
+session_start();
+ /*
+ Template Name: Order
+ */
+global $current_user;
+get_currentuserinfo();
+?>
+<?php global $theme; get_header(); ?>
+<?php $tongtien=0; ?>
+   <div class="container">
+   		<div class="row">
+        <div id="columns_left" class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
+       
+			<div class="order">
+				<form action="" method="post" accept-charset="utf-8">
+				
+				<?php if(is_user_logged_in()){ ?>
+					<h3>Khách hàng khai báo thông tin</h3>
+					<?php
+							 if ( isset( $_SESSION['cart'] ) && count( $_SESSION['cart'] ) > 0 ) { //kiểm tra số lượng sản phẩm trước khi hiển thị
+								 ?>
+											
+									<?php
+									$total = 0;
+									foreach ( $_SESSION['cart'] as $pro_id => $quantity ){ //lặp qua mảng cart session lấy ra id và show thông tin sản phẩm theo id đó
+										$product = get_post((int)$pro_id );
+										$price = get_post_meta($pro_id,"price",true);
+										$total += $price * $quantity; $tongtien = $total;
+									}
+									?>	
+											
+									
+							 <?php
+							 } else {
+								echo "<h5>Hiện chưa có sản phẩm nào trong giỏ hàng! <a href='" . get_bloginfo( 'url' ) . "/san-pham-danh-muc'>Bấm vào đây</a> để xem và mua hàng.</h5>";
+							 }
+							 ?>
+					<div class="accountdetail col-xs-12 col-sm-12 col-md-6 col-lg-6">
+						<h4 class="titleorder">Thông tin người mua</h4>
+						<li><span class="label_left">Họ tên : </span><input type="text" id="hoten" name="hoten" value="<?php echo $current_user->user_firstname." ".$current_user->user_lastname;?>" class="form-control" placeholder="Nhập họ tên"></li>
+						<li><span class="label_left">Email:  </span><input type="text"  name="email" id="email" value="<?php echo $current_user->user_email;?>" class="form-control" placeholder="Nhập email"></li>
+						<li><span class="label_left">Số điện thoại:  </span><input type="text"  name="phone" id="phone" value="<?php echo $current_user->phone;?>" class="form-control" placeholder="Nhập số điện thoại"></li>
+						<li>
+							<span class="label_left">Địa chỉ nhận hàng: </span><input type="text" name="adress" id="adress" value="<?php echo $current_user->address;?>" placeholder="Hãy nhập địa chỉ nhận hàng của bạn!" class="form-control">
+						</li>
+						<li>
+							<span class="label_left">Ghi chú: <textarea name="ghichu" rows="5" cols="40" class="form-control"></textarea></span>
+						</li>
+					</div>
+					<div class="shipping col-xs-12 col-sm-12 col-md-6 col-lg-6">
+						<h4 class="titleorder">Thông tin người nhận <input onclick="FillBilling(this.form)" name="billingtoo" type="checkbox" style="margin-left: 10px;" value="checked"><em style="color:#666; font-size:11px; padding-left:5px;text-transform: none;">Lấy từ thông tin người mua</em></h4>
+						<li><span class="label_left">Họ tên : </span><input type="text" id="hoten_nn" name="hoten_nn" value="" class="form-control" placeholder="Nhập họ tên"></li>
+						<li><span class="label_left">Email:  </span><input type="text" id="email_nn" name="email_nn" value="" class="form-control" placeholder="Nhập email"></li>
+						<li><span class="label_left">Số điện thoại:  </span><input type="text" id="phone_nn" name="phone_nn" value="" class="form-control" placeholder="Nhập số điện thoại"></li>
+						<li>
+							<span class="label_left">Địa chỉ nhận hàng: </span><input type="text" id="adress_nn" name="adress_nn" value="" placeholder="Hãy nhập địa chỉ nhận hàng của bạn!" class="form-control">
+						</li>
+						<li class="tinh_thanhpho">
+							<span class="label_left">Chọn Tỉnh/Thành phố: </span>
+							<select id="tinh_thanhpho" name="tinh_thanhpho" onchange="ChangeCboCity(jQuery(this).val())" class="form-control">
+									<option value="0">--- Chọn tỉnh/Thành phố ---</option>
+								<?php 
+									global $wpdb;
+									$query_tinh_tp = $wpdb->get_results("SELECT * FROM xtl_danh_sach_tinh");
+									foreach ($query_tinh_tp as $key => $value) { ?>
+									<option value="<?php echo $value->id_danh_sach_tinh;?>" id="tinh<?php echo $value->id_danh_sach_tinh;?>" data-tinh<?php echo $value->id_danh_sach_tinh;?>="<?php echo $value->gia;?>"><?php echo $value->ten_tinh;?></option>
+								<?php } ?>
+							</select>
+						</li>
+						<li class="quan_huyen">
+							<span>Chọn Quận/Huyện</span>
+							<select id="quan_huyen" name="quan_huyen" onchange="ChangeCboState(jQuery(this).val())" class="form-control">
+									<option value = "0">--- Chọn Quận/Huyện ---</option>
+							</select>
+						</li>
+						<li class="xa_phuong">
+							<span>Chọn Xã/Phường</span>
+							<select id="xa_phuong" name="xa_phuong" onchange="ChangeCboXa(jQuery(this).val())" class="form-control">
+									<option value = "0">--- Chọn Xã/Phường ---</option>
+							</select>
+						</li>
+						<li class="phi_tong"><p>- Phí vận chuyển đơn hàng theo khu vực của bạn là: </p><strong><span id="van_chuyen_tinh_tp"></span></strong></li>
+						<input name="tienship" id="tienship" value="" type="hidden"/>
+						<li class="phi_tong"><p>- Tổng thanh toán khi cộng thêm phí vận chuyển: </p><strong><span id="tongtienhang" ><?php echo '$'.$total; ?></span></strong></li>
+						 <input name="tongtienhang_tt" id="tongtienhang_tt" value="" type="hidden"/>
+					</div>
+					<div class="payment">
+						<h4 class="titleorder">Thanh toán</h4>
+						<li class="payment-online col-xs-12 col-sm-12 col-md-12 col-lg-12"><input type="radio" name="group1" id="payments" class="disablebox" value="1"><span class="ckhoan"> Chuyển khoản</span>
+						<em>Thanh toán nhanh gọn và có thể mua hàng hoặc sử dụng ngay dịch vụ sau khi thanh toán.</em>
+						<span class="mota_payments">
+							<?php $content_post = get_post(1140);echo $content_post->post_content;?>
+						</span>
+						</li>
+						
+						<li class="payment-off col-xs-12 col-sm-12 col-md-12 col-lg-12"><input type="radio" name="group1" id="orderpayment" class="disablebox2" value="2"><span class="ghang"> Giao hàng thu tiền</span><em>Hiện tại chúng tôi chỉ áp dụng phương thức giao hàng thu tiền trong nội thành Hà Nội</em></li>
+						<!-- <li>Thanh toán trực tuyến <input type="radio" name="group1" id="onlinepayment" class="disablebox3" value="3"></li> -->
+					</div>
+						
+					<div class="submits">
+						<input type="submit" name="dathang" value="Thanh toán" />
+					</div>
+				</form>
+					<?php 
+						global $wpdb;
+						if(isset($_POST['dathang'])){ 
+							if(isset($_POST['billingtoo']) == "checked"){
+							if(isset($_POST['group1'])){
+								
+								if ( isset( $_SESSION['cart'] ) && count( $_SESSION['cart'] ) > 0 ) {
+									$total = 0;
+									$qty = 0;
+									$current_user = wp_get_current_user();
+									$payment_post = $_POST['group1'];
+									$adress = $_POST['adress'];
+									$ship = $_POST['tienship'];
+									$user_id = $current_user->id;
+									$name = $_POST['hoten'];
+									$ghichu = $_POST['ghichu'];
+									$email = $current_user->user_email;
+									$phone = $current_user->phone;
+									$hoten_nn = $_POST['hoten_nn'];
+									$email_nn = $_POST['email_nn'];
+									$phone_nn = $_POST['phone_nn'];
+									$adress_nn = $_POST['adress_nn'];
+									$tinh_tp_nn = $_POST['tinh_thanhpho'];
+									$quan_huyen_nn = $_POST['quan_huyen'];
+									$xa_phuong_nn = $_POST['xa_phuong'];
+									$create_date = time();
+									$create_order = time();
+									$regex = "/([a-z0-9_]+|[a-z0-9_]+\.[a-z0-9_]+)@(([a-z0-9]|[a-z0-9]+\.[a-z0-9]+)+\.([a-z]{2,4}))/i"; 
+									if(!preg_match($regex, $email)){ 
+										?>
+											<script type="text/javascript" language="javascript">
+												alert("Email không hợp lệ!");							
+											</script>
+										<?php
+									}else{
+										if($name == "" || $phone == "" || $email == "" || $adress == "" || $payment_post == "" || $tinh_tp_nn == "0" || $quan_huyen_nn == "0" || $xa_phuong_nn == "0"){
+										?>
+											<script type="text/javascript" language="javascript">
+												alert("Bạn hãy điên đầy đủ thông tin!");
+											</script>
+										<?php
+										}else{
+											$wpdb->query("INSERT INTO xtl_order values('','$user_id','$name','$phone','$adress','$email','$ghichu','$payment_post','$ship','$create_date','0')");
+											$results = $wpdb->get_row("SELECT * FROM xtl_order WHERE email = '$email' Order By id_order DESC LIMIT 1");
+											$id_order = $results->id_order;
+											$wpdb->query("INSERT INTO xtl_order_nn values('','$id_order','$user_id','$hoten_nn','$email_nn','$phone_nn','$adress_nn','$tinh_tp_nn','$quan_huyen_nn','$xa_phuong_nn','$ship','$payment_post','$create_date','0')");
+										 	foreach ( $_SESSION['cart'] as $pro_id => $quantity ){ //lặp qua mảng cart session lấy ra id và show thông tin sản phẩm theo id đó
+												$product = get_post((int)$pro_id );
+												$price = get_post_meta($pro_id,"price",true);
+												$product_title = $product->post_title;
+												$total = $price * $quantity;
+												$wpdb->query("INSERT INTO xtl_order_detail values('','$id_order','$pro_id','$product_title','$quantity','$price','$total','$create_order','0')");
+											} ?>
+											
+											<?php
+												if($payment_post == 1){ ?>
+												<script type="text/javascript" language="javascript">
+													window.location.replace("<?php echo get_bloginfo('url');?>/in?order="+<?php echo $id_order;?>);
+												</script>
+											<?php
+												
+												}elseif($payment_post == 2){?>
+													<script type="text/javascript" language="javascript">
+														window.location.replace("<?php echo get_bloginfo('url');?>/in?order="+<?php echo $id_order;?>);
+													</script>	
+											<?php	}
+										}
+									}
+								}
+							}else{?>
+								<script type="text/javascript" language="javascript">
+												alert("Bạn chưa chọn phương thức thanh toán! Vui lòng trọn phương thức thanh toán!");
+								</script>
+							<?php
+							}
+						}else{
+								if ( isset( $_SESSION['cart'] ) && count( $_SESSION['cart'] ) > 0 ) {
+									$total = 0;
+									$qty = 0;
+									$current_user = wp_get_current_user();
+									$payment_post = $_POST['group1'];
+									$adress = $_POST['adress'];
+									$ship = $_POST['tienship'];
+									$user_id = $current_user->id;
+									$name = $_POST['hoten'];
+									$ghichu = $_POST['ghichu'];
+									$email = $current_user->user_email;
+									$phone = $current_user->phone;
+									$hoten_nn = $_POST['hoten_nn'];
+									$email_nn = $_POST['email_nn'];
+									$phone_nn = $_POST['phone_nn'];
+									$adress_nn = $_POST['adress_nn'];
+									$tinh_tp_nn = $_POST['tinh_thanhpho'];
+									$quan_huyen_nn = $_POST['quan_huyen'];
+									$xa_phuong_nn = $_POST['xa_phuong'];
+									$create_date = time();
+									$create_order = time();
+									$regex = "/([a-z0-9_]+|[a-z0-9_]+\.[a-z0-9_]+)@(([a-z0-9]|[a-z0-9]+\.[a-z0-9]+)+\.([a-z]{2,4}))/i"; 
+									if(!preg_match($regex, $email)){ 
+										?>
+											<script type="text/javascript" language="javascript">
+												alert("Email không hợp lệ!");							
+											</script>
+										<?php
+									}else{
+										if($name == "" || $phone == "" || $email == "" || $adress == "" || $payment_post == "" || $tinh_tp_nn == "0" || $quan_huyen_nn == "0" || $xa_phuong_nn == "0" || $hoten_nn == "" || $email_nn == "" || $phone_nn == "" || $adress_nn == ""){
+										?>
+											<script type="text/javascript" language="javascript">
+												alert("Bạn hãy điên đầy đủ thông tin!");
+											</script>
+										<?php
+										}else{
+											$wpdb->query("INSERT INTO xtl_order values('','$user_id','$name','$phone','$adress','$email','$ghichu','$payment_post','$ship','$create_date','0')");
+											
+
+											$results = $wpdb->get_row("SELECT * FROM xtl_order WHERE email = '$email' Order By id_order DESC LIMIT 1");
+											$id_order = $results->id_order;
+											$wpdb->query("INSERT INTO xtl_order_nn values('','$id_order',$user_id','$hoten_nn','$email_nn','$phone_nn','$adress_nn','$tinh_tp_nn','$quan_huyen_nn','$xa_phuong_nn','$ship','$payment_post','$create_date','0')");
+										 	foreach ( $_SESSION['cart'] as $pro_id => $quantity ){ //lặp qua mảng cart session lấy ra id và show thông tin sản phẩm theo id đó
+												$product = get_post((int)$pro_id );
+												$price = get_post_meta($pro_id,"price",true);
+												$product_title = $product->post_title;
+												$total = $price * $quantity;
+												$wpdb->query("INSERT INTO xtl_order_detail values('','$id_order','$pro_id','$product_title','$quantity','$price','$total','$create_order','0')");
+											} 
+
+											?>
+											
+											<?php
+												if($payment_post == 1){ ?>
+												<script type="text/javascript" language="javascript">
+													window.location.replace("<?php echo get_bloginfo('url');?>/in?order="+<?php echo $id_order;?>);
+												</script>
+											<?php
+												
+												}elseif($payment_post == 2){?>
+													<script type="text/javascript" language="javascript">
+														window.location.replace("<?php echo get_bloginfo('url');?>in?order="+<?php echo $id_order;?>);
+													</script>	
+											<?php	}
+										}
+									}
+								}
+						}
+							?>
+						
+									
+					<?php	}
+
+
+					?>
+				<?php	}else{ ?>
+				</form>
+					<div class="order1">
+						<div class="loginorder col-xs-12 col-sm-12 col-md-12 col-lg-12">
+							<div class="formdangnhap col-xs-12 col-sm-6 col-md-7 col-lg-7">
+								<h3>Đăng nhập tài khoản</h3>
+							    <?php wp_login_form(); ?>
+							    <!-- <form action="" id="loginform" name="loginform" method="post" accept-charset="utf-8">
+							    	<li>Tên đăng nhập</li>
+							    								    <li><input type="text" name="log" id="user_login" class="input" value="" size="50"></li>
+							    								    <li>Mật khẩu</li>
+							    								    <li><input type="password" name="pwd" id="user_pass" class="input" value="" size="50"></li>
+							    								    <li><input type="submit" name="wp-submit" id="wp-submit" class="button-primary" value="Đăng nhập">
+							    </form>	 -->
+							    <p>Bạn chưa có tài khoản? Click <a href="<?php bloginfo('url'); ?>/register"><strong>tại đây</strong></a> để đăng ký tài khoản.</p>
+							    <div class="login-orther">
+							    	<?php do_action('facebook_login_button');?>
+							    	
+							    </div>
+							</div>
+							<div class="custom_guest col-xs-12 col-sm-6 col-md-5 col-lg-5">
+								<h3>Bạn chưa có tài khoản Vitacare?</h3>
+								<form action="" method="post" accept-charset="utf-8">
+									<li><input class="disablebox" name="guest_custom" type="radio" value="1" /> Tôi là một khách hàng mới</li>
+									<li><input class="disablebox" name="guest_custom" type="radio" value="2" /> Tôi muốn thanh toán không phải đăng ký tài khoản</li>
+									<li class="cols-xs-12 col-sm-12 col-md-12 col-lg-12" style="text-align: center;"><input id="continueguest" name="continueguest" type="submit" value="Tiếp tục" /></li>
+								</form>
+							</div>
+						</div>
+					</div>
+				<?php	}
+				?>
+				
+			</div>
+ 		</div>
+		<div id="columns_right" class="col-sm-3 hidden-xs">
+			<?php get_sidebar('right'); ?>
+		</div>
+	</div>
+ </div><!-- #content -->
+<?php get_footer(); ?>
+<?php
+	if($_POST['continueguest']){
+		if($_POST['guest_custom'] == 1){
+		?>
+			<script type="text/javascript">
+			   	// Javascript URL redirection
+			    window.location.replace("/register");
+			</script>
+		<?php
+		}elseif($_POST['guest_custom'] == 2){
+		?>
+			<script type="text/javascript">
+			   	// Javascript URL redirection
+			    window.location.replace("/checkout-not-register");
+			</script>
+		<?php
+		}
+	}
+?>
+<?php $ajax = get_home_url().'\/wp-admin\/admin-ajax.php';?>
+<script>
+function ChangeCboCity(id) {
+    var tongtien = <?php echo $tongtien; ?>;
+    var tienshiptinh = $("#tinh"+id).attr("data-tinh"+id);
+    var tongcong = parseFloat(tongtien) + parseFloat(tienshiptinh);
+    $( "#van_chuyen_tinh_tp" ).html("$" + tienshiptinh);
+    $( "#tongtienhang" ).html("$" + tongcong);
+    document.getElementById("tienship").value = tienshiptinh;
+    document.getElementById("tongtienhang_tt").value = tongcong;
+      jQuery.ajax({
+        type: "POST",
+        url: '<?php echo $ajax; ?>',
+        data: {'action':'dshuyen_ajax','matinh': + id},
+        success: function(html) {
+            jQuery("#quan_huyen").html(html);
+        }
+    });
+
+}
+function ChangeCboState(id) {
+	var van_chuyen_huyen = $("#tienship").val();
+	var tienshiphuyen = $("#huyen"+id).attr("data-huyen"+id);
+	var tienship_huyen =  parseFloat(van_chuyen_huyen) +  parseFloat(tienshiphuyen);
+	$( "#van_chuyen_tinh_tp" ).html("$" + tienship_huyen);
+
+	var tongtien_hang_huyen = $("#tongtienhang_tt").val();
+	var tongcong_huyen = parseFloat(tongtien_hang_huyen) + parseFloat(tienshiphuyen);
+	$( "#tongtienhang" ).html("$" + tongcong_huyen);
+
+	document.getElementById("tongtienhang_tt").value = tongcong_huyen;
+	document.getElementById("tienship").value = tienship_huyen;
+      jQuery.ajax({
+        type: "POST",
+        url: '<?php echo $ajax; ?>',
+        data: {'action':'dsxa_ajax','mahuyen': + id},
+        success: function(html) {
+            jQuery("#xa_phuong").html(html);
+        }
+    });
+}
+function ChangeCboXa(id) {
+	var van_chuyen_xa = $("#tienship").val();
+	var tienshipxa = $("#xa"+id).attr("data-xa"+id);
+	var tienship_xa =  parseFloat(van_chuyen_xa) +  parseFloat(tienshipxa);
+	$( "#van_chuyen_tinh_tp" ).html("$" + tienship_xa);
+
+	var tongtien_hang_xa = $("#tongtienhang_tt").val();
+	var tongcong_xa = parseFloat(tongtien_hang_xa) + parseFloat(tienshipxa);
+	$( "#tongtienhang" ).html("$" + tongcong_xa);
+
+	document.getElementById("tienship").value = tienship_xa;
+	document.getElementById("tongtienhang_tt").value = tongcong_xa;
+}
+
+
+
+</script>
+  <script>
+function FillBilling(f) {
+  if(f.billingtoo.checked == true) {
+  	var hoten = $("#hoten").val();
+  	document.getElementById("hoten_nn").value = hoten;
+  	var email = $("#email").val();
+  	document.getElementById("email_nn").value = email;
+  	var phone = $("#phone").val();
+  	document.getElementById("phone_nn").value = phone;
+  	var adress = $("#adress").val();
+  	document.getElementById("adress_nn").value = adress;
+    /*f.hoten_nn.value = f.hoten.value;
+    f.email_nn.value = f.email.value;
+	f.phone_nn.value = f.phone.value;
+	f.adress_nn.value = f.adress.value;*/
+	/*f.quan2.value = f.vpc_SHIP_Provice.value;
+	f.thanhpho2.value = f.vpc_SHIP_City.value;*/
+  }
+    if(f.billingtoo.checked == false) {
+    f.hoten_nn.value = '';
+
+    f.email_nn.value = '';
+    f.phone_nn.value = '';
+    f.adress_nn.value = '';
+    /*f.quan2.value = '';
+    f.thanhpho2.value = '';*/
+  }
+}
+</script>
+<script language="javascript">
+		jQuery(document).ready(function(){ 
+			jQuery(".ckhoan").click(function(){  
+			 	$("#payments").attr("checked","checked");
+			 	
+		   });  
+		}); 
+		jQuery(document).ready(function(){ 
+			jQuery(".ghang").click(function(){  
+			 	$("#orderpayment").attr("checked","checked");
+			 	
+		   });  
+		}); 
+        </script>
+<?php
+
+?>
