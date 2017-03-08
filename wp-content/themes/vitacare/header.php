@@ -145,7 +145,7 @@
 	
 
 	<div id="sitecontainer">
-		<a href="#mmenu"><div class="header"></div></a>
+		<!-- <a href="#mmenu"><div class="header"></div></a> -->
 
 		<?php //include 'template-parts/vnt-header.php'; ?>
 		<?php get_template_part( 'template-parts/vnt-header', 'top' ); ?>

@@ -13,6 +13,19 @@
 	button = nav.find( '.menu-toggle' );
 	menu = nav.find( '.nav-menu' );
 
+	// search
+	$('.sb-icon-search').on('click', function (e) {
+		
+		var input_search = $('.sb-search-input');
+		if (input_search.val() != '') {
+			$(this).css({'z-index':11});
+			$('#search-form').submit();
+		} else {
+			$(this).css({'z-index':111});
+		}
+		$('#sb-search').toggleClass('sb-search-open');
+	});
+
 	/**
 	 * Adds a top margin to the footer if the sidebar widget area is higher
 	 * than the rest of the page, to help the footer always visually clear

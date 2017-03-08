@@ -26,7 +26,7 @@
 					        $args = array( 
 					        	'theme_location' => 'primary', 
 								'menu_class' => 'nav-menu nav navbar-nav list-inline sf-js-enabled sf-arrows', 
-								// 'show_count' => true,
+								'show_count' => false,
 								'menu_id' => "primary-menu",
 								'container' => 'nav',
 								'container_class' => 'main-navigation',
@@ -88,7 +88,17 @@
 					                    </div>
 					                </div>
 					            </div>
-					        </div>					       
+					        </div>
+					        <div class="sb-search-wrapper">
+								<div id="sb-search" class="sb-search">
+									<form action="<?php echo esc_url( home_url( '/' ) ); ?> method="get" id="search-form">
+										<input class="sb-search-input" placeholder="Tìm kiếm..." type="text" value="" name="s" id="search">
+										<input class="sb-search-submit" type="submit">
+										<span class="sb-icon-search"></span>
+									</form>
+								</div><!--sb-search-->
+							</div>
+							<!-- end:sb-search-wrapper -->
 					    </div>
 					</div>
 					

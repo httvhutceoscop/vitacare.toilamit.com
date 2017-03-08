@@ -120,12 +120,16 @@ echo do_shortcode('[smartslider3 slider=2]');
 			</div>
 			<!-- End: quy trình chăm sóc -->
 
-			<div class="cham_ngon" style="background:#5BBA65;text-align:center;float:left;width:100%;margin:10px 0px;padding:7px 0px;color:#fff;">
-				<h3><?php echo get_option('option4');?></h3>
-			</div>
+<!-- 			<div class="cham_ngon" style="background:#5BBA65;text-align:center;float:left;width:100%;margin:10px 0px;padding:7px 0px;color:#fff;">
+				<h3> -->
+					<?php //echo get_option('option4');?>
+				<!-- </h3>
+			</div> -->
 
-			<!-- Bài viết mới -->
+			<!-- Kiến thức Vitacare -->
+
 			<div class="new-post-by-cat col-xs-12 col-sm-12 col-md-12 col-lg-12">
+				<h3 class="title_home">Kiến thức Vitacare</h3>
 				<div class="column-new-post-by-cat col-xs-12 col-sm-6 col-md-4 col-lg-4">
 					<?php
 						$args = array(
@@ -211,13 +215,11 @@ echo do_shortcode('[smartslider3 slider=2]');
 					?>
 				</div>
 			</div>
-			<!-- End: Bài viết mới -->
+			<!-- End: Kiến thức vitacare -->			
 
-			
-
-			<!-- Ý kiến khách hàng -->
+			<!-- Khách hàng nói về Vitacare -->
 			<div class="comment_guest">
-				<h3 class="title_home">Ý kiến khách hàng</h3>
+				<h3 class="title_home">Khách hàng nói về Vitacare</h3>
 				<?php
 					$args = array(
 							'post_type' => 'y-kien-khach-hang',
@@ -241,7 +243,7 @@ echo do_shortcode('[smartslider3 slider=2]');
 					endif;
 				?>
 			</div>
-			<!-- End: Ý kiến khách hàng -->
+			<!-- End: Khách hàng nói về Vitacare -->
 
 			<!-- Lời tâm sự -->
 			<div class="sayme">
