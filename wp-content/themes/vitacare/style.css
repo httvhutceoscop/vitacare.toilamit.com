@@ -504,21 +504,21 @@ img.wp-smiley,
 	margin-left: -1px;
 	position: absolute;
 	z-index: 999;
-	width: 250px;
-	left: 0px;
+	width: 100%;
+	left: -15px;
 }
 .nav-menu > li:hover > ul.sub-menu{
 	display: block;
 } 
 .nav-menu > li > ul.sub-menu > li{
 	float: left;
-	/*width: 30%;*/
+	width: 30%;
 	padding: 5px 20px 5px 0px;
-	/*margin-right: 70%;*/
-	/*background: url("images/arow_cat.png") right center no-repeat;*/
+	margin-right: 70%;
+	background: url("images/arow_cat.png") right center no-repeat;
 }
 .nav-menu > li > ul.sub-menu > li.firstopen{
-	/*background: #fff url("images/arow_cat_hover.png") right center no-repeat;*/
+	background: #fff url("images/arow_cat_hover.png") right center no-repeat;
 }
 .nav-menu > li > ul.sub-menu > li.firstopen a{color:#BC7C00;}
 .nav-menu > li > ul.sub-menu > li.firstopen > ul.sub-menu {
@@ -528,8 +528,8 @@ img.wp-smiley,
 .nav-menu > li > ul.sub-menu > li.firstopen > ul.sub-menu > li > a{color:#BC7C00;}
 .nav-menu > li > ul.sub-menu > li > a{font-weight: 400;line-height:25px;font-size: 16px;float: left;position: relative;text-transform: none;padding: 5px;}
 .nav-menu > li > ul.sub-menu > li:hover{
-	/*background: #fff url("images/arow_cat_hover.png") right center no-repeat;*/
-	/*color: #996500;*/
+	background: #fff url("images/arow_cat_hover.png") right center no-repeat;
+	color: #996500;
 }
 .nav-menu > li > ul.sub-menu > li:hover a{color: #996500;}
 .nav-menu > li > ul.sub-menu > li:hover > ul.sub-menu{
@@ -1760,13 +1760,13 @@ a > .title-content:hover{color: #000;}
 .title_home_care a{text-decoration: none;}
 .title_home_care strong{font-size: 27px;font-weight: 400;}
 .title_home{width: 100%;padding: 10px 5px;margin: 0px 0px 10px 0px;color: #535335;font-size: 24px;border-bottom: 1px solid #cdcdcd;text-transform: uppercase;font-weight: 300;line-height: 30px;}
-.comment_guest{width: 100%;float: left;padding: 0px;margin: 10px 0px;}
+.comment_guest{width: 100%;float: left;padding: 0px;margin: 10px 0px;font-size: 15px;}
 .com_guest{float: left;padding: 0px 5px;margin: 0px 0px 10px 0px;text-align: left;}
 .com_content{float:left;margin: 0px;padding: 5px;border-left: 2px solid #fafafa;background: #fafafa;font-family: Georgia;font-style: italic;}
 .sayme{float:left;width: 100%;padding: 0px;margin: 10px 0px;text-align: justify;}
 .sayme ul{list-style: none;padding: 0px;margin: 0px;font-size: 15px;}
-.sayme_thumbnail{height: 155px;padding: 5px;text-align: center;}
-.sayme .sayme_thumbnail img{width: auto;%;height: 100%;border-radius: 90px;border: 3px solid #cdcdcd;box-shadow: 0px 0px 5px #909090;margin: 0px auto;}
+.sayme_thumbnail{padding: 5px;text-align: center;}
+.sayme .sayme_thumbnail img{width: auto;border-radius: 0px;border: 0px solid #cdcdcd;margin: 0px auto;}
 .aboutme{float: left;width: 100%;padding: 0px;margin: 10px 0px;}
 .form_tuvan{width: 100%;float: left;padding: 10px;margin: 0px;background: #fff;}
 .form_tuvan h3{text-align: center;padding: 10px 0px;border-bottom: 1px solid #CA2524;color: #CA2524;text-transform: uppercase;margin-bottom: 15px;font-weight: 500;font-size: 21px;}
@@ -2073,6 +2073,21 @@ input,textarea{font-weight: 400 !important;font-size: 12px;line-height: 25px;col
 
 
 /***************** vnt customs style ********************/
+.video {
+	position: relative;
+	padding-bottom: 56.25%; /* 16:9 */
+	padding-top: 25px;
+	height: 0;
+	overflow: hidden;
+}
+.video iframe {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
 #punica-masthead {
     margin-bottom: 10px;
 }
@@ -2119,18 +2134,18 @@ input,textarea{font-weight: 400 !important;font-size: 12px;line-height: 25px;col
 
 #punica-topbar .container .row>div.col-lg-10 {
     /*position: static;*/
-    position: relative;
+    /*position: relative;*/
 }
 
 .punica-navbar {
-    position: relative;
+    /*position: relative;*/
     min-height: 60px;
     margin-bottom: 0;
     border: none;
 }
 
 #punica-topbar .navbar {
-    position: static;
+    /*position: static;*/
     margin: 0;
 }
 
@@ -2140,7 +2155,11 @@ input,textarea{font-weight: 400 !important;font-size: 12px;line-height: 25px;col
 }
 
 #punica-topbar .navbar #primary-menu {
-    position: static;
+    /*position: static;*/
+}
+
+.nav>li {
+	position: inherit;
 }
 
 #punica-topbar .list-inline {
@@ -2451,6 +2470,15 @@ h3.widgettitle {
     -o-transition: all 0.5s ease-in-out;
     transition: all 0.5s ease-in-out;
 }
+
+.img-ykkh {
+
+}
+
+.img-ykkh img {
+	width: 100%;
+}
+
 
 @media screen and (max-width: 479px) {
 	#punica-topbar .punica-cart {
