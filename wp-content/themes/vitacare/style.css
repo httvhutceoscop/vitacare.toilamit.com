@@ -499,49 +499,50 @@ img.wp-smiley,
 .nav-menu > li > ul.sub-menu{
 	background-color: rgba(37,37,37,0.9);
 	display: none;
-	overflow: hidden;
-	padding: 10px;
-	margin-left: -1px;
+	/*overflow: hidden;*/
+	padding: 10px;	
 	position: absolute;
 	z-index: 999;
 	width: 100%;
-	left: -15px;
+	left: 0px;
+	min-height: 245px;
 }
 .nav-menu > li:hover > ul.sub-menu{
 	display: block;
 } 
 .nav-menu > li > ul.sub-menu > li{
 	float: left;
-	width: 30%;
+	width: 40%;
 	padding: 5px 20px 5px 0px;
-	margin-right: 70%;
+	margin-right: 60%;
 	background: url("images/arow_cat.png") right center no-repeat;
 }
 .nav-menu > li > ul.sub-menu > li.firstopen{
-	background: #fff url("images/arow_cat_hover.png") right center no-repeat;
+	background: #6d6d6d url("images/arow_cat_hover.png") right center no-repeat;
 }
 .nav-menu > li > ul.sub-menu > li.firstopen a{color:#BC7C00;}
 .nav-menu > li > ul.sub-menu > li.firstopen > ul.sub-menu {
 	display: block;
-	/*background: #fff;*/
+	background: #6d6d6d;
 }
 .nav-menu > li > ul.sub-menu > li.firstopen > ul.sub-menu > li > a{color:#BC7C00;}
 .nav-menu > li > ul.sub-menu > li > a{font-weight: 400;line-height:25px;font-size: 16px;float: left;position: relative;text-transform: none;padding: 5px;}
 .nav-menu > li > ul.sub-menu > li:hover{
-	background: #fff url("images/arow_cat_hover.png") right center no-repeat;
+	background: #6d6d6d url("images/arow_cat_hover.png") right center no-repeat;
 	color: #996500;
 }
 .nav-menu > li > ul.sub-menu > li:hover a{color: #996500;}
 .nav-menu > li > ul.sub-menu > li:hover > ul.sub-menu{
 	display: block;
-	/*background: #fff;*/
+	background: #6d6d6d;
 }
 .nav-menu > li > ul.sub-menu > li:hover > ul.sub-menu > li > a{color: #996500;}
 .nav-menu > li > ul.sub-menu > li > ul.sub-menu > li{
-	/*width: 33%*/
-	padding: 2px 10px;
+	width: 50%;
+	padding: 5px 10px !important;
 	float: left;
 	position: relative;
+	line-height: 24px;
 }
 .nav-menu > li > ul.sub-menu > li > ul.sub-menu > li > a{font-size: 1em;color: #fff;text-transform: none;font-weight: 500;}
 .nav-menu > li > ul.sub-menu > li > ul.sub-menu > li:hover > a{color: #000;}
@@ -556,16 +557,16 @@ img.wp-smiley,
 .nav-menu > li > ul.sub-menu > li > ul.sub-menu{
 	display: none;
 	position: absolute;
-	left: 0px;
+	left: 40%;
 	z-index: 99999;
 	top: 0px;
-	/*width: 69%;*/
+	width: 60%;
 	/*margin-left: 30.3%;*/
-	min-height: 93%;
-	margin-top: 10px;
-	margin-right: 5px;
-	margin-bottom: 5px;
-	padding: 0px;
+	min-height: 100%;
+	/*margin-top: 10px;*/
+	/*margin-right: 5px;*/
+	/*margin-bottom: 5px;*/
+	padding: 10px;
 }
 .nav-menu > li > ul.sub-menu > li:hover > ul.sub-menu{display: block;}
 .nav-menu > li > ul.sub-menu > li > ul.sub-menu > li > ul.sub-menu{display: block;position: relative;left: 0px;top: 100%;margin: 0px;padding: 0px 0px 0px 15px;}
@@ -2158,8 +2159,8 @@ input,textarea{font-weight: 400 !important;font-size: 12px;line-height: 25px;col
     /*position: static;*/
 }
 
-.nav>li {
-	position: inherit;
+.nav>li, .navbar {
+	position: static;
 }
 
 #punica-topbar .list-inline {

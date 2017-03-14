@@ -28,7 +28,7 @@ echo do_shortcode('[smartslider3 slider=2]');
 		 <div id="columns_left" class="col-xs-12 col-sm-12 col-md-12 col-lg-9">
 
 		 	<!-- Video giới thiệu -->
-			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="margin-bottom: 20px;">
 				<h3 class="title_home">Video giới thiệu Vitacare</h3>
 				<div class="video col-xs-12 col-sm-12 col-md-12 col-lg-12">
 					<iframe width="100%" height="auto" src="https://www.youtube.com/embed/BqRH8z3FAas" frameborder="0" allowfullscreen></iframe>	
@@ -106,7 +106,7 @@ echo do_shortcode('[smartslider3 slider=2]');
 			?>	
 			<!-- Quy trình chăm sóc -->
 			<div class="bai_viet_home col-xs-12 col-sm-12 col-md-12 col-lg-12">
-				<h3 class="title_home_care"><a href="/ve-chung-toi/ve-chung-toi-ve-chung-toi/quy-trinh-chat-luong"><?php echo get_option('option2');?><br/> <strong><?php echo get_option('option3');?></strong></a></h3>
+				<h3 class="title_home"><a href="/ve-chung-toi/ve-chung-toi-ve-chung-toi/quy-trinh-chat-luong">QUY TRÌNH CHĂM SÓC DINH DƯỠNG CHUẨN CỦA VITACARE</a></h3>
 				<?php 
 				$i = 0;
 				if(have_posts()) : while(have_posts()) : the_post();?>
