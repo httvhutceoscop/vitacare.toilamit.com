@@ -147,6 +147,17 @@
 	<div id="sitecontainer">
 		<!-- <a href="#mmenu"><div class="header"></div></a> -->
 
+		<!-- Hotline -->
+		<ul id="info-scroll" class="lsn clearfix xs-hidden sm-hidden">
+			<li class="clearfix">
+				<a href="tel:0961329769" class="clearfix">
+					<span class="icon"><img src="http://nannyvitacare.com/wp-content/themes/nanny/images/phone-ico.png" alt="" style="margin-top: 5px;"></span>
+					<span class="text">HOTLINE <small>0961 329 769</small></span>
+				</a>
+			</li>
+		</ul>
+		<!-- End hotline -->
+
 		<?php //include 'template-parts/vnt-header.php'; ?>
 		<?php get_template_part( 'template-parts/vnt-header', 'top' ); ?>
 

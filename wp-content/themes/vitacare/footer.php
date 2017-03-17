@@ -85,5 +85,22 @@
             window.location.replace('?add-to-cart='+id+'&quantity=1');
         }
     </script>
+    <script>
+        $(function() {
+            var offset = $("#columns_right").offset();
+            var topPadding = 15;
+            $(window).scroll(function() {
+                if ($(window).scrollTop() > offset.top) {
+                    $("#columns_right").stop().animate({
+                        marginTop: $(window).scrollTop() - offset.top + topPadding
+                    });
+                } else {
+                    $("#columns_right").stop().animate({
+                        marginTop: 0
+                    });
+                };
+            });
+        });
+    </script>
 </body>
 </html>

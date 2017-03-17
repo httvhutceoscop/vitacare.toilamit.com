@@ -49,15 +49,18 @@ get_header(); ?>
 										<?php echo category_description(); ?>
 									<?php endif; ?>
 									
-									<div class="boxselect">
-										<span>Liên kết nhanh: </span>
-										<select id="chon_danh_muc">
-											
-											<?php foreach($this_category1 as $term) { ?>
-											<option value="<?php echo get_category_link($term->cat_ID);?>"><?php echo $term->name;?></option>
-											<?php } ?>
-										</select>
+									<div class="form-inline">
+										<div class="form-group">
+											<label>Liên kết nhanh: </label>
+											<select id="chon_danh_muc" class="form-control">
+												
+												<?php foreach($this_category1 as $term) { ?>
+												<option value="<?php echo get_category_link($term->cat_ID);?>"><?php echo $term->name;?></option>
+												<?php } ?>
+											</select>
+										</div>	
 									</div>
+									
 									
 								</div>
 								<div class="imagethunb hidden-xs col-lg-6">
