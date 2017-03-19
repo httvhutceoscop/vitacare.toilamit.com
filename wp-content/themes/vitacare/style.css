@@ -1571,7 +1571,7 @@ footer a[rel="bookmark"]:link:after,footer a[rel="bookmark"]:visited:after {	con
 .step {margin: 0 0px 5px 0px;padding: 0;background: #dbdbdb none repeat scroll 0 0;color: #000;font-size: 1em;font-weight: 500;margin: 0;padding: 10px 5px;font-family: "Roboto",Arial,Helvetica,sans-serif;}
 .step:hover{background: #8cc63f none repeat scroll 0 0;color: #fff;font-size: 1.1em;margin: 0;padding: 10px 5px;}
 .content-step{margin: 0;padding: 5px;text-align: justify;display:none;}
-.overview{float: left;margin-bottom: 25px;padding-left: 30px;padding-top: 20px;width: 100%;}
+.overview{float: left;margin-bottom: 25px;padding-left: 30px;padding-top: 10px;padding-bottom:10px;background:#696969;color:#fff;width: 100%;}
 .img-thumb{margin: 0px;padding: 0px;}
 .img-thumb img{margin: 0px auto;height: 100%;width: auto;}
 .title{font-size: 20px;margin: 0;font-weight: 600;padding: 0px;}

@@ -34,7 +34,7 @@ get_header(); ?>
 					        bcn_display();
 					    }?>
 					</div>
-					<div class="overview row">
+					<div class="overview col-xs-12 col-sm-12 col-md-12 col-lg-12">
 						 <?php
 						 	if($id_cat != 118){
 						 		$cat = get_category( $id_cat );
@@ -82,15 +82,18 @@ get_header(); ?>
 									<?php if (category_description()) :?>
 										<?php echo category_description(); ?>
 									<?php endif; ?>
-									<?php if(count($this_category) > 0){ ?>
-									<div class="boxselect">
-										<span>Shop: </span>
-										<select id="chon_danh_muc">
-											<option value="selected"  selected="selected"><?php echo get_cat_name( $id_cat ) ?></option>
-											<?php foreach($this_category as $term) { ?>
-											<option value="<?php echo get_category_link($term->cat_ID);?>"><?php echo $term->name;?></option>
-											<?php } ?>
-										</select>
+									<?php if(count($this_category) > 0) { ?>
+
+									<div class="form-inline">
+										<div class="form-group">
+											<label>Shop: </label>
+											<select id="chon_danh_muc" class="form-control">
+												<option value="selected"  selected="selected"><?php echo get_cat_name( $id_cat ) ?></option>
+												<?php foreach($this_category as $term) { ?>
+												<option value="<?php echo get_category_link($term->cat_ID);?>"><?php echo $term->name;?></option>
+												<?php } ?>
+											</select>
+										</div>	
 									</div>
 									<?php } ?>
 								</div>
@@ -109,6 +112,7 @@ get_header(); ?>
 							if($id_cat == 1 || $id_cat == 117 || $id_cat == 118){
 								if($id_cat == 1){?>
 									<div class="left_cat col-xs-12 col-sm-12 col-md-6 col-lg-6">
+										<div id="cat-content">
 									<?php
 										$args = array(
 										 	'post_type' => 'post',
@@ -144,13 +148,17 @@ get_header(); ?>
 										endwhile;
 										endif;
 										wp_reset_query();?>
-										
+
+										</div>
+										<div class="view-more-cat cat-id-1-117-118">Xem đầy đủ nội dung</div>	
 									</div>
+									
 
 								<?php
 								}
 								if($id_cat == 117){?>
 								<div class="left_cat col-xs-12 col-sm-12 col-md-6 col-lg-6">
+									<div id="cat-content">
 								<?php
 									$args = array(
 										 	'post_type' => 'post',
@@ -175,11 +183,16 @@ get_header(); ?>
 										endwhile;
 										endif;
 										wp_reset_query();?>
+
+									</div>
+									<div class="view-more-cat cat-id-117">Xem đầy đủ nội dung</div>
 								</div>
+								
 								<?php
-								}
-									
-							}else{
+								}									
+							}
+
+							else {
 								$args2 = array(
 										 	'post_type' => 'post',
 										 	'cat' => $id_cat,
@@ -216,6 +229,7 @@ get_header(); ?>
 									query_posts($args);
 									?>
 									<div class="left_cat col-xs-12 col-sm-12 col-md-12 col-lg-12">
+										<div id="cat-content">
 										<?php
 										if (have_posts()) : while (have_posts()) : the_post(); ?>
 										<h3 class="title-dm-left"><?php the_title();?></h3>
@@ -224,9 +238,15 @@ get_header(); ?>
 										endwhile;
 										endif;
 										wp_reset_query();?>
+
+										</div>
+										<div class="view-more-cat count_posts_0-1">Xem đầy đủ nội dung</div>
 									</div>
+									
 									<?php
-								}else{
+								} 
+
+								else {
 									$args = array(
 										 	'post_type' => 'post',
 										 	'cat' => $id_cat,
@@ -247,6 +267,7 @@ get_header(); ?>
 									
 									?>
 									<div class="left_cat col-xs-12 col-sm-12 col-md-6 col-lg-6">
+										<div id="cat-content">
 										<?php
 										if (have_posts()) : while (have_posts()) : the_post();
 											$categories = get_the_category($post->ID);
@@ -261,7 +282,10 @@ get_header(); ?>
 										endwhile;
 										endif;
 										wp_reset_query();?>
+										</div>
+										<div class="view-more-cat count_posts_0">Xem đầy đủ nội dung</div>
 									</div>
+									
 									<?php
 								}
 							}
@@ -626,7 +650,7 @@ get_header(); ?>
 						        bcn_display();
 						    }?>
 						</div>
-						<div class="overviews row">
+						<div class="overviews col-xs-12 col-sm-12 col-md-12 col-lg-12">
 							<?php 
 								$args = array(
 										'post_type' => 'post',
@@ -675,6 +699,62 @@ get_header(); ?>
 			</div>
 		</div>
 </div>
+
+
+<!-- VietNT - check height of left_cat, if it's larger than 500, we will show the text "view more cat" -->
+<script type="text/javascript">
+	$(document).ready(function(){
+		var cat_content = $('#cat-content');
+		var content = cat_content.html();
+		var h = cat_content.height();
+		var view_more_cat = $('.view-more-cat');
+		if (h < 500) {
+			view_more_cat.hide();
+		} else {
+			cat_content.height('500px');
+			view_more_cat.click(function(e){
+				cat_content.height('auto');
+				view_more_cat.hide();
+			});
+		}
+
+
+		// Fix position of overview
+	    var overview = $('.overview');
+		var offset = $(".overview").offset();
+
+	    $(window).scroll(function() {
+	        /*if ($(window).scrollTop() > offset.top) {
+
+	            overview.css({
+	            	'position':'fixed',
+	            	'top': '72px',
+	            });
+	        } else {
+				overview.css({
+	            	'position':'relative',
+	            	'top':0,
+	            });            
+	        };*/
+	    });
+	});
+</script>
+
+<style type="text/css">
+	#cat-content {
+		/*height: 500px;*/
+		overflow: hidden;
+		transition: all 0.5s;
+	}
+	.view-more-cat {
+		/*display: none;*/
+		margin: 10px 0;
+	    text-align: right;
+	    text-decoration: underline;
+	    color: #b14b00;
+	    cursor: pointer;
+	}
+</style>
 
 
 <?php get_footer(); ?>
