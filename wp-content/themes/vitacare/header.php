@@ -148,7 +148,7 @@
 		<!-- <a href="#mmenu"><div class="header"></div></a> -->
 
 		<!-- Hotline -->
-		<ul id="info-scroll" class="lsn clearfix xs-hidden sm-hidden">
+		<ul id="info-scroll" class="lsn clearfix xs-hidden sm-hidden hide">
 			<li class="clearfix">
 				<a href="tel:0961329769" class="clearfix">
 					<span class="icon"><img src="http://nannyvitacare.com/wp-content/themes/nanny/images/phone-ico.png" alt="" style="margin-top: 5px;"></span>

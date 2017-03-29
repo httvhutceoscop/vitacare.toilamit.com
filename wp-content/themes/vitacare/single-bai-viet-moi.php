@@ -2,6 +2,12 @@
 
 get_header(); 
 $id_post = get_the_ID();
+
+ $term = get_the_terms($id_post, 'danh-muc-bai-viet-moi');
+ $a_term_id = [];
+ foreach ($term as $key => $value) {
+     array_push($a_term_id, $value->term_id);
+ }
 ?>
 
 	
@@ -15,48 +21,71 @@ $id_post = get_the_ID();
 		</div>
 		<div class="box-x">
 			<div id="sidebar_columns_left" class="col-sm-3 hidden-xs">
-                    <div class="danh-muc-bai-viet-moi">
-                        <ul>
-                            <?php
-                                $taxonomy  = 'danh-muc-bai-viet-moi';
-                                $this_category = get_categories("&taxonomy=".$taxonomy."&parent=0&hide_empty=0&order=DESC");
-                                foreach ($this_category as $key => $value) { ?>
-                                    <li><span class="title-danh-muc"><a href="<?php echo get_category_link($value->term_id);?>"><?php echo $value->name;?></a></span>
-                                        <ul>
-                                        <?php
-                                            $sub_category = get_categories("&taxonomy=".$taxonomy."&parent=".$value->term_id."&hide_empty=0&order=ASC");
-                                            foreach ($sub_category as $key => $sub_value) {
-                                        ?>
-                                             <li 
+                <div class="danh-muc-bai-viet-moi">
+                    <ul>
+                        <?php
+                            $taxonomy  = 'danh-muc-bai-viet-moi';
+                            $this_category = get_categories("&taxonomy=".$taxonomy."&parent=0&hide_empty=0&order=DESC");
+                            foreach ($this_category as $key => $value) { ?>
+                                <li><span class="title-danh-muc"><a href="<?php echo get_category_link($value->term_id);?>"><?php echo $value->name;?></a></span>
+                                    <ul class="sub-category">
+                                    <?php
+                                        $sub_category = get_categories("&taxonomy=".$taxonomy."&parent=".$value->term_id."&hide_empty=0&order=ASC");
+                                        foreach ($sub_category as $key => $sub_value) {
+                                            $sub_sub_category = get_categories("&taxonomy=".$taxonomy."&parent=".$sub_value->term_id."&hide_empty=0&order=ASC");
+                                    ?>
+                                        <li class="
+                                            <?php
+                                                if($catid == $sub_value->cat_ID){
+                                                    echo 'danh-muc-select ';                                                
+                                                }
+                                                if (count($sub_sub_category) > 0) {
+                                                    echo 'has-sub-category ';
+                                                }
+                                                if (in_array($sub_value->cat_ID, $a_term_id))
+                                                    echo 'open-sub-category ';
+                                            ?>
+                                            "
+                                        >
+                                            <a href="<?php echo get_term_link($sub_value->cat_ID); ?>" >
+                                                <?php echo $sub_value->name;?> (<?php echo count_port_by_cat($sub_value->cat_ID,'danh-muc-bai-viet-moi');?>)
+                                            </a>
+                                            <?php                                                
+                                                if (count($sub_sub_category) > 0) {
+                                            ?>
+                                                <ul class="sub-sub-category">
                                                 <?php
-                                                    if($catid == $sub_value->cat_ID){
-                                                        echo 'class="danh-muc-select"';
+                                                    foreach ($sub_sub_category as $key => $sub_sub_value) {
+                                                ?>
+                                                    <li class="<?php 
+                                                            if(in_array($sub_sub_value->cat_ID, $a_term_id)){
+                                                                echo 'danh-muc-select ';                                                
+                                                            }
+                                                        ?>">
+                                                        <a href="<?php echo get_term_link($sub_sub_value->cat_ID); ?>" >
+                                                            <?php echo $sub_sub_value->name;?>
+                                                        </a>
+                                                    </li>
+                                                <?php
                                                     }
                                                 ?>
-                                            >
-                                        <a href="<?php echo get_term_link($sub_value->cat_ID); ?>" ><?php echo $sub_value->name;?> (<?php echo count_port_by_cat($sub_value->cat_ID,'danh-muc-bai-viet-moi');?>)</a></li>
+                                                </ul>
+                                            <?php
+                                                }
+                                            ?>
+                                        </li>                                    
+                                    <?php } ?>
+                                    </ul>
+                                </li>
+                        <?php } ?>
+                    </ul>
 
-                                        <?php
-                                            }
-                                        ?>
-                                           
-                                    
-                                        
-                                        </ul>
-                                    </li>
-                                   
-                            <?php
-                                }
-
-                            ?>
-                        </ul>
-
-                    </div>
-
-                    <?php if ( is_active_sidebar( 'left-sidebar' ) ) : ?>
-                        <?php dynamic_sidebar( 'left-sidebar' ); ?>
-                    <?php endif; ?>
                 </div>
+
+                <?php if ( is_active_sidebar( 'left-sidebar' ) ) : ?>
+                    <?php dynamic_sidebar( 'left-sidebar' ); ?>
+                <?php endif; ?>
+            </div>
 			 <div id="columns_left" class="box-single col-xs-12 col-sm-12 col-md-6 col-lg-6">
 
 					<?php  if (have_posts()) : while (have_posts()) : the_post();?>

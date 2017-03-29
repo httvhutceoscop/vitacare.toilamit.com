@@ -84,6 +84,8 @@ include(TEMPLATEPATH . '/includes/widget-show-post-by-categories-2.php');
 
 include(TEMPLATEPATH . '/includes/widget-post-viewed.php');
 
+include(TEMPLATEPATH . '/includes/widget-post-hot.php');
+
 
 
 /**

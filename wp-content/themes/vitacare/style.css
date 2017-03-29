@@ -497,7 +497,8 @@ img.wp-smiley,
 .nav-menu .children {background-color: #220e10;border: 2px solid #f7f5e7;border-top: 0;padding: 0;position: absolute;left: -2px;z-index: 99999;height: 1px;width: 1px;overflow: hidden;clip: rect(1px, 1px, 1px, 1px);} */
 /*vietnt*/
 .nav-menu > li > ul.sub-menu{
-	background-color: rgba(37,37,37,0.9);
+	/*background-color: rgba(37,37,37,0.9);*/
+	background-color: #BC7C00;
 	display: none;
 	/*overflow: hidden;*/
 	padding: 10px;	
@@ -518,23 +519,23 @@ img.wp-smiley,
 	background: url("images/arow_cat.png") right center no-repeat;
 }
 .nav-menu > li > ul.sub-menu > li.firstopen{
-	background: #6d6d6d url("images/arow_cat_hover.png") right center no-repeat;
+	background: #fff url("images/arow_cat_hover.png") right center no-repeat;
 }
 .nav-menu > li > ul.sub-menu > li.firstopen a{color:#BC7C00;}
 .nav-menu > li > ul.sub-menu > li.firstopen > ul.sub-menu {
 	display: block;
-	background: #6d6d6d;
+	background: #fff;
 }
 .nav-menu > li > ul.sub-menu > li.firstopen > ul.sub-menu > li > a{color:#BC7C00;}
 .nav-menu > li > ul.sub-menu > li > a{font-weight: 400;line-height:25px;font-size: 16px;float: left;position: relative;text-transform: none;padding: 5px;}
 .nav-menu > li > ul.sub-menu > li:hover{
-	background: #6d6d6d url("images/arow_cat_hover.png") right center no-repeat;
+	background: #fff url("images/arow_cat_hover.png") right center no-repeat;
 	color: #996500;
 }
 .nav-menu > li > ul.sub-menu > li:hover a{color: #996500;}
 .nav-menu > li > ul.sub-menu > li:hover > ul.sub-menu{
 	display: block;
-	background: #6d6d6d;
+	background: #fff;
 }
 .nav-menu > li > ul.sub-menu > li:hover > ul.sub-menu > li > a{color: #996500;}
 .nav-menu > li > ul.sub-menu > li > ul.sub-menu > li{
@@ -552,7 +553,8 @@ img.wp-smiley,
 .nav-menu .current_page_ancestor > a,
 .nav-menu .current-menu-item > a,
 .nav-menu .current-menu-ancestor > a {
- 	color: #f58707 !important;
+ 	color: #fff !important;
+    background: #BC7C00;
  }
 .nav-menu > li > ul.sub-menu > li > ul.sub-menu{
 	display: none;
@@ -571,7 +573,7 @@ img.wp-smiley,
 .nav-menu > li > ul.sub-menu > li:hover > ul.sub-menu{display: block;}
 .nav-menu > li > ul.sub-menu > li > ul.sub-menu > li > ul.sub-menu{display: none;position: relative;left: 0px;top: 100%;margin: 0px;padding: 0px 0px 0px 15px;}
 .nav-menu > li > ul.sub-menu > li > ul.sub-menu > li.menu-item-has-children:hover > ul.sub-menu {display: block;}
-.nav-menu > li > ul.sub-menu > li > ul.sub-menu > li > ul.sub-menu > li{display:block;float: left;width: 100%;height: 25px;position: relative;padding:0px;}
+.nav-menu > li > ul.sub-menu > li > ul.sub-menu > li > ul.sub-menu > li{display:block;float: left;width: 100%;height: auto;position: relative;padding:0px;}
 .nav-menu > li > ul.sub-menu > li > ul.sub-menu > li > ul.sub-menu > li > a{color:#666;font-weight: 400;font-size: 0.9em;}
 .nav-menu > li > ul.sub-menu > li > ul.sub-menu > li > ul.sub-menu > li:hover > a{color:#472e00;}
 .column-1 > ul > li{width: 50% !important;float: left;}
@@ -1931,7 +1933,7 @@ a .header{font-size: 16px;font-weight: bold;color: #fff;text-transform: uppercas
 margin: 0px;
 width: 100%;
 float: left;
-height: 40px;
+height: auto;
 line-height: 21px;
 overflow: hidden;
 border-top: 1px solid #cdcdcd;}
@@ -2095,13 +2097,15 @@ input,textarea{font-weight: 400 !important;font-size: 12px;line-height: 25px;col
     margin-bottom: 10px;
 }
 #punica-topbar {
-    background: #252525;
+    background: #fff;
     color: #999;
     padding: 0;
     text-transform: none;
     font-size: 14px;
     position: relative;
     z-index: 11;
+    box-shadow: 1px 1px #f1f1f1;
+    border-bottom: 1px solid #f1f1f1;
 }
 #punica-logo {
     background-color: #fff;
@@ -2131,8 +2135,9 @@ input,textarea{font-weight: 400 !important;font-size: 12px;line-height: 25px;col
 #punica-logo .logo-wrapper img {
 	height: 62px;
 }
-#punica-topbar a {
-    color: #FFF;
+#punica-topbar #primary-menu > li > a, .social-sidebar a {
+    color: #BC7C00;
+    font-weight: 600;
 }
 
 #punica-topbar .container .row>div.col-lg-10 {
@@ -2180,7 +2185,7 @@ input,textarea{font-weight: 400 !important;font-size: 12px;line-height: 25px;col
 }
 
 #punica-top-menu li a, #primary-menu li a {
-    color: #FFF;
+    /*color: #996500;*/
     font-family: "Poppins",sans-serif;
     line-height: 27px;
     font-size: 14px;
@@ -2189,8 +2194,8 @@ input,textarea{font-weight: 400 !important;font-size: 12px;line-height: 25px;col
 #punica-top-menu li a:focus, 
 #primary-menu li a:hover,
 #primary-menu li a:focus {
-	background: none;
-	color: #f58707;
+	background: #BC7C00;
+    color: #fff !important;
 }
 
 #punica-topbar .social-sidebar {
@@ -2204,7 +2209,7 @@ input,textarea{font-weight: 400 !important;font-size: 12px;line-height: 25px;col
     height: 60px;
     text-align: center;
     line-height: 60px;
-    border-right: 1px solid #363636;
+    border-right: 1px solid #e2e2e2;
     z-index: 1;
     position: relative;
 }
@@ -2223,11 +2228,9 @@ input,textarea{font-weight: 400 !important;font-size: 12px;line-height: 25px;col
     height: 60px;
     display: block;
 }
-#punica-topbar a {
-    color: #FFF;
-}
+
 #mini-cart .cart-icon {
-    color: #FFF;
+    color: #000;
 }
 .box-top .box-title .title-cart {
     display: none;
@@ -2269,13 +2272,13 @@ input,textarea{font-weight: 400 !important;font-size: 12px;line-height: 25px;col
     position: relative;
     z-index: 10;
     padding: 15px 20px 16px;
-    border-left: 1px solid #363636;
-    border-right: 1px solid #363636;
+    border-left: 1px solid #e2e2e2;
+    border-right: 1px solid #e2e2e2;
     height: 60px;
     line-height: 27px;
 }
 #punica-topbar a {
-    color: #FFF;
+    /*color: #FFF;*/
 }
 
 .sb-search-wrapper {
@@ -2283,7 +2286,7 @@ input,textarea{font-weight: 400 !important;font-size: 12px;line-height: 25px;col
     right: 15px;
     top: 0;
     width: auto;
-    border-right: solid 1px #363636;
+    border-right: solid 1px #e2e2e2;
 }
 .sb-search {
     position: relative;
@@ -2341,7 +2344,7 @@ input,textarea{font-weight: 400 !important;font-size: 12px;line-height: 25px;col
     font-variant: normal;
     text-transform: none;
     -webkit-font-smoothing: antialiased;
-    background-color: transparent;
+    background-color: #f99f36;
     color: #FFF;
 }
 .sb-icon-search:hover {
@@ -2555,6 +2558,92 @@ h3.widgettitle {
     right: 20px;
 }
 
+/*Customize sidebar: bai-viet-moi*/
+.bai-viet-moi ul {
+	margin-bottom: 0;
+	padding: 0;
+}
+.bai-viet-moi ul li a {
+	background: url(http://xoso.homnay24h.com/images/icons/new.gif) right center no-repeat;
+    padding-right: 34px;
+    padding-bottom: 4px;
+    padding-top: 4px;
+    background-position: 100% 0px;
+    display: inline-block;
+}
+
+.bai-viet-moi ul li .post-date {
+	font-size: 13px;
+	font-style: italic;
+}
+
+/*San pham hot*/
+.san-pham-hot {
+
+}
+.san-pham-hot li.imageorder img {
+
+}
+.san-pham-hot li.titlesorder a {
+
+}
+.san-pham-hot .btn-buy {
+
+}
+
+/*sub sub category in bai viet moi*/
+ul.sub-category {
+
+}
+
+ul.sub-category > li {
+
+}
+
+ul.sub-category > li > a {
+	
+}
+
+ul.sub-category > li:hover .sub-sub-category {
+	display: block;
+}
+
+li.has-sub-category {
+	padding: 0 !important;
+}
+li.has-sub-category a {
+    padding: 10px 0;
+    display: inline-block;
+}
+
+ul.sub-sub-category {
+	display: none;
+	float: left;
+    width: 100%;
+    padding: 0;
+    background: #fafafa;
+}
+
+.sub-sub-category > li {
+	float: left;
+    width: 100%;
+    list-style: none;
+    height: auto;
+    line-height: 21px;
+    overflow: hidden;
+    border-top: 1px solid #cdcdcd;
+    padding: 0 0 0 10px;
+}
+
+.sub-sub-category > li > a {
+	width: 100%;
+	color: #1d1d1d;
+}
+
+li.has-sub-category.open-sub-category > ul {
+    display: block;
+}
+
 @media screen and (max-width: 479px) {
 	#punica-topbar .punica-cart {
 	    border: none;
@@ -2583,7 +2672,7 @@ h3.widgettitle {
 
 	#punica-topbar .punica-cart {
 	    right: 0;
-	    /*border-left: 1px solid #363636;*/
+	    /*border-left: 1px solid #e2e2e2;*/
 	}
 
 	.sb-search .sb-icon-search, .no-js .sb-search .sb-icon-search {	 

@@ -26,26 +26,54 @@
                                 $this_category = get_categories("&taxonomy=".$taxonomy."&parent=0&hide_empty=0&order=DESC");
                                 foreach ($this_category as $key => $value) { ?>
                                     <li><span class="title-danh-muc"><a href="<?php echo get_category_link($value->term_id);?>"><?php echo $value->name;?></a></span>
-                                        <ul>
+                                        <ul class="sub-category">
                                         <?php
                                             $sub_category = get_categories("&taxonomy=".$taxonomy."&parent=".$value->term_id."&hide_empty=0&order=ASC");
                                             foreach ($sub_category as $key => $sub_value) {
+                                                $sub_sub_category = get_categories("&taxonomy=".$taxonomy."&parent=".$sub_value->term_id."&hide_empty=0&order=ASC");
                                         ?>
-                                             <li 
+                                            <li class="
                                                 <?php
                                                     if($catid == $sub_value->cat_ID){
-                                                        echo 'class="danh-muc-select"';
+                                                        echo 'danh-muc-select ';                                                
+                                                    }
+                                                    if (count($sub_sub_category) > 0) {
+                                                        echo 'has-sub-category';
                                                     }
                                                 ?>
+                                                "
                                             >
-                                        <a href="<?php echo $sub_value->slug; ?>" ><?php echo $sub_value->name;?> (<?php echo count_port_by_cat($sub_value->cat_ID,'danh-muc-bai-viet-moi');?>)</a></li>
+                                                <a href="<?php echo $sub_value->slug; ?>" >
+                                                    <?php echo $sub_value->name;?> (<?php echo count_port_by_cat($sub_value->cat_ID,'danh-muc-bai-viet-moi');?>)
+                                                </a>
+                                                <?php                                                
+                                                    if (count($sub_sub_category) > 0) {
+                                                ?>
+                                                    <ul class="sub-sub-category">
+                                                    <?php
+                                                        foreach ($sub_sub_category as $key => $sub_sub_value) {
+                                                    ?>
+                                                        <li class="<?php 
+                                                            if($catid == $sub_sub_value->cat_ID){
+                                                                echo 'danh-muc-select ';                                                
+                                                            }
+                                                        ?>">
+                                                            <a href="<?php echo get_term_link($sub_sub_value->cat_ID); ?>" >
+                                                                <?php echo $sub_sub_value->name;?>
+                                                            </a>
+                                                        </li>
+                                                    <?php
+                                                        }
+                                                    ?>
+                                                    </ul>
+                                                <?php
+                                                    }
+                                                ?>
+                                            </li>
 
                                         <?php
                                             }
                                         ?>
-                                          
-                                    
-                                        
                                         </ul>
                                     </li>
                                    
