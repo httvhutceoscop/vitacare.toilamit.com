@@ -13,7 +13,7 @@
 </div><!-- #main -->
 <div class="footer">
 	<footer id="colophon" class="site-footer" role="contentinfo">
-		
+
 			<!-- <div class="using-science">
 				<p>Using science to get the best out of nature</p>
 			</div>
@@ -21,7 +21,7 @@
 		<div class="footer-container">
 			<div class="container">
 				<div class="row">
-					<div class="footer_top col-xs-12 col-sm-12 col-md-12 col-lg-12">	
+					<div class="footer_top col-xs-12 col-sm-12 col-md-12 col-lg-12">
 						<div class="logo_manufacture col-xs-12 col-sm-12 col-md-12">
 							<h4><?php echo get_option('option5');?></h4>
 							<?php echo do_shortcode("[WLS id='52']"); ?>
@@ -82,7 +82,7 @@
 		left: 0;
 		bottom: 0px;
 		/*height: 200px;*/
-		border: 1px solid #f1f1f1;		
+		border: 1px solid #f1f1f1;
 		width: 240px;
 		background: #ffffff;
 		transition: all 0.5s;
@@ -107,8 +107,8 @@
 	}
 	.control ._open {
 		display: none;
-	} 
-	#take-care .body {		
+	}
+	#take-care .body {
 		padding: 10px;
 		font-weight: 700;
 		font-size: 18px;
@@ -180,7 +180,7 @@
 		});
 
 		// Change subscriber into Đăng ký
-		$('.email-subscriber #es_txt_button').val('Đăng ký');		
+		$('.email-subscriber #es_txt_button').val('Đăng ký');
 
 		// Change "read more" to "Xem thêm..."
 		$('.khach-hang-than-thiet .read-more').html('Xem thêm...');
@@ -190,7 +190,7 @@
 
 	<?php wp_footer(); ?>
 	<script>
-        
+
         function Add_to_Cart(id) {
             window.location.replace('?add-to-cart='+id+'&quantity=1');
         }
@@ -218,7 +218,7 @@
     		})
     	} else {
     		header.css({
-    			'position': 'relative',			   
+    			'position': 'relative',
     		});
     		mainWrapper.css({
     			marginTop: 0
@@ -243,8 +243,27 @@
             });
         };
     });
+
+    //close or open menu sidebar
+    var toggle_close = $('.toggle-close');
+    var toggle_open = $('.toggle-open');
+    var l_parent;
+
+    toggle_close.click(function() {
+    	$(this).hide();
+		toggle_open.css({display: 'block'});
+		l_parent = $(this).parent();
+		l_parent.find('.sub-sub-category').css({display: 'none'});
+    });
+
+    toggle_open.click(function() {
+    	$(this).hide();
+		toggle_close.css({display: 'block'});
+		l_parent = $(this).parent();
+		l_parent.find('.sub-sub-category').css({display: 'block'});
+    });
 });
 
-    </script>    
+    </script>
 </body>
 </html>

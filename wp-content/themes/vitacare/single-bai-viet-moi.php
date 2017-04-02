@@ -37,7 +37,7 @@ $id_post = get_the_ID();
                                         <li class="
                                             <?php
                                                 if($catid == $sub_value->cat_ID){
-                                                    echo 'danh-muc-select ';                                                
+                                                    echo 'danh-muc-select ';
                                                 }
                                                 if (count($sub_sub_category) > 0) {
                                                     echo 'has-sub-category ';
@@ -50,16 +50,26 @@ $id_post = get_the_ID();
                                             <a href="<?php echo get_term_link($sub_value->cat_ID); ?>" >
                                                 <?php echo $sub_value->name;?> (<?php echo count_port_by_cat($sub_value->cat_ID,'danh-muc-bai-viet-moi');?>)
                                             </a>
-                                            <?php                                                
+
+                                            <?php
+                                                if (count($sub_sub_category) > 0) {
+                                            ?>
+                                            <i class="fa fa-minus toggle-close" aria-hidden="true"></i>
+                                            <i class="fa fa-plus toggle-open" aria-hidden="true"></i>
+                                            <?php
+                                                }
+                                            ?>
+
+                                            <?php
                                                 if (count($sub_sub_category) > 0) {
                                             ?>
                                                 <ul class="sub-sub-category">
                                                 <?php
                                                     foreach ($sub_sub_category as $key => $sub_sub_value) {
                                                 ?>
-                                                    <li class="<?php 
+                                                    <li class="<?php
                                                             if(in_array($sub_sub_value->cat_ID, $a_term_id)){
-                                                                echo 'danh-muc-select ';                                                
+                                                                echo 'danh-muc-select ';
                                                             }
                                                         ?>">
                                                         <a href="<?php echo get_term_link($sub_sub_value->cat_ID); ?>" >

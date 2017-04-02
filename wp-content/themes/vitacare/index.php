@@ -16,21 +16,21 @@
 
 get_header(); ?>
 
-		<div class="slideshow hidden-xs">
-			 <?php
-echo do_shortcode('[smartslider3 slider=2]');
-?>
+		<div class="slideshow hidden-xs hide">
+		 	<?php
+				//echo do_shortcode('[smartslider3 slider=2]');
+			?>
 		</div>
 
 <div class="container">
-	<div class="row">
+	<div class="row" style="box-shadow: 0px 3px 10px 4px #f1f1f1;">
 		 <div id="columns_left" class="col-xs-12 col-sm-12 col-md-12 col-lg-9">
 
 		 	<!-- Video giới thiệu -->
 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="margin-bottom: 20px;">
 				<h3 class="title_home">Video giới thiệu Vitacare</h3>
 				<div class="video col-xs-12 col-sm-12 col-md-12 col-lg-12">
-					<iframe width="100%" height="auto" src="https://www.youtube.com/embed/BqRH8z3FAas" frameborder="0" allowfullscreen></iframe>	
+					<iframe width="100%" height="auto" src="https://www.youtube.com/embed/dcw1m31zuTE?autoplay=1" frameborder="0" allowfullscreen autoplay="1"></iframe>
 				</div>
 			</div>
 			<!-- End Video giới thiệu -->
@@ -48,7 +48,7 @@ echo do_shortcode('[smartslider3 slider=2]');
 						query_posts($args);
 					?>
 				<div class="owl-carousels">
-					<?php 
+					<?php
 						while(have_posts()) : the_post();
 						?>
 						<div class="product-cat item col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -69,7 +69,7 @@ echo do_shortcode('[smartslider3 slider=2]');
 										<span class="regular_price_single">
 											Giá: <?php echo number_format(get_post_meta(get_the_ID(), "_regular_price", true));?> VNĐ
 										</span>
-										<?php 
+										<?php
 									}
 									?>
 									<?php
@@ -89,7 +89,7 @@ echo do_shortcode('[smartslider3 slider=2]');
 				</div>
 			</div>
 			<!-- End: các sản phẩm vitacare -->
-		 
+
 			 <?php
 				$args = array(
 							'post_type' => 'bai-viet-trang-chu',
@@ -102,11 +102,11 @@ echo do_shortcode('[smartslider3 slider=2]');
 
 						);
 				query_posts($args);
-			?>	
+			?>
 			<!-- Quy trình chăm sóc -->
 			<div class="bai_viet_home col-xs-12 col-sm-12 col-md-12 col-lg-12">
 				<h3 class="title_home"><a href="/ve-chung-toi/ve-chung-toi-ve-chung-toi/quy-trinh-chat-luong">QUY TRÌNH CHĂM SÓC DINH DƯỠNG CHUẨN CỦA VITACARE</a></h3>
-				<?php 
+				<?php
 				$i = 0;
 				if(have_posts()) : while(have_posts()) : the_post();?>
 					<div class="box col-xs-12 col-sm-6 col-md-4 col-lg-4">
@@ -224,7 +224,7 @@ echo do_shortcode('[smartslider3 slider=2]');
 					?>
 				</div>
 			</div>
-			<!-- End: Kiến thức vitacare -->			
+			<!-- End: Kiến thức vitacare -->
 
 			<!-- Khách hàng nói về Vitacare -->
 			<div class="comment_guest">
@@ -234,7 +234,7 @@ echo do_shortcode('[smartslider3 slider=2]');
 							'post_type' => 'y-kien-khach-hang',
 							'showposts' => 3,
 							'orderby' => 'id',
-							'order' => 'ASC',							
+							'order' => 'ASC',
 						);
 					$aKhachHangReview = [];
 
@@ -244,7 +244,7 @@ echo do_shortcode('[smartslider3 slider=2]');
 					$video_ykkh = $aYKienKhachHang[0];
 					$image_ykkh = $aYKienKhachHang[1];
 					$text_ykkh = $aYKienKhachHang[2];
-			
+
 					$imgUrl = "https://img.youtube.com/vi/<insert-youtube-video-id-here>/default.jpg";
 					$youtubeId = get_post_meta($video_ykkh->ID, "youtube-id", $single = false);
 				?>
@@ -254,10 +254,10 @@ echo do_shortcode('[smartslider3 slider=2]');
 				?>
 					<div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
 						<div class="video">
-							<iframe width="100%" height="auto" src="https://www.youtube.com/embed/<?php echo $youtubeId[0];?>" frameborder="0" allowfullscreen></iframe>	
+							<iframe width="100%" height="auto" src="https://www.youtube.com/embed/<?php echo $youtubeId[0];?>" frameborder="0" allowfullscreen></iframe>
 						</div>
 					</div>
-				<?php		
+				<?php
 					} else {
 				?>
 
@@ -267,11 +267,11 @@ echo do_shortcode('[smartslider3 slider=2]');
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 						<a class="hide"> href="<?php echo get_permalink($image_ykkh->ID);?>">
 							<div class="img-ykkh">
-								<img src="https://placeholdit.imgix.net/~text?txtsize=19&txt=200%C3%97200&w=200&h=200"/>	
+								<img src="https://placeholdit.imgix.net/~text?txtsize=19&txt=200%C3%97200&w=200&h=200"/>
 							</div>
 						</a>
 						<?php echo wp_trim_words($image_ykkh->post_content,50);?>
-						<a class="more-link" href="<?php echo get_permalink($image_ykkh->ID);?>">Đọc thêm...</a>				
+						<a class="more-link" href="<?php echo get_permalink($image_ykkh->ID);?>">Đọc thêm...</a>
 					</div>
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 						<?php echo wp_trim_words($text_ykkh->post_content,50);?>
@@ -293,10 +293,10 @@ echo do_shortcode('[smartslider3 slider=2]');
 							/*'tax_query' => array(
 											'taxonomy' => 'danh-muc-y-kien-khach-hang',
 										),*/
-							
+
 						);
 					query_posts($args);
-					if(have_posts()) : while(have_posts()) : the_post(); 
+					if(have_posts()) : while(have_posts()) : the_post();
 				?>
 					<ul class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 						<li class="sayme_thumbnail col-xs-12 col-sm-12 col-md-2 col-lg-2"><?php the_post_thumbnail();?></li>
@@ -310,8 +310,8 @@ echo do_shortcode('[smartslider3 slider=2]');
 			</div>
 			<!-- End: lời tâm sự -->
 		</div>
-		
-		
+
+
 		<div id="columns_right" class="col-sm-3 hidden-xs">
 			<?php if ( is_active_sidebar( 'right-sidebar' ) ) : ?>
                 <?php dynamic_sidebar( 'right-sidebar' ); ?>

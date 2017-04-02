@@ -6,26 +6,20 @@
 		parent::WP_Widget(false,$name='Hiển thị sản phẩm hot',$widget_ops,$control_ops);
 
     }
- 
-  //Displays the Widget in the front-end 
+  	//Displays the Widget in the front-end
     function widget($args, $instance){
 		extract($args);
 		$title = apply_filters('widget_title', empty($instance['title']) ? '  ': $instance['title']);
 		$posts_number = empty($instance['posts_number']) ? '': (int) $instance['posts_number'];
-
 		echo $before_widget;
-	 
 		if( $title )
 		echo $before_title . $title . $after_title;
 	?>
-
 		<div class="innersidebar recenty_viewed">
-	
 			<div class="box_viewed">
 			<?php
-
 				$args = array(
-					'orderby' => 'modified',//'DESC',
+					'orderby' => 'modified',
 					'posts_per_page' => $posts_number,
 					'tax_query' => array(
 						array(

@@ -286,7 +286,7 @@ hr {background: url(images/dotted-line.png) repeat center top;background-size: 4
 .comment-form-url:after,
 .comment-body:after {clear: both;}
 
-.clearfix:before, 
+.clearfix:before,
 .clearfix:after,
 .clear:before,
 .clear:after,
@@ -452,7 +452,9 @@ img.wp-smiley,
  * 4.1 Site Header
  * ----------------------------------------------------------------------------
  */
-#main-wrapper{width:100%;margin:auto;margin-top: 0px;background: #fff url("images/background.php") top center no-repeat;}
+#main-wrapper{width:100%;margin:auto;margin-top: 0px;
+	/* background: #fff url("images/background.php") top center no-repeat; */
+}
 .main_content{width: 1000px;margin:auto;}
 .site-header {margin: auto auto auto 0px;width: 100%;z-index: 99999;}
 
@@ -501,7 +503,7 @@ img.wp-smiley,
 	background-color: #BC7C00;
 	display: none;
 	/*overflow: hidden;*/
-	padding: 10px;	
+	padding: 10px;
 	position: absolute;
 	z-index: 999;
 	width: 100%;
@@ -510,7 +512,7 @@ img.wp-smiley,
 }
 .nav-menu > li:hover > ul.sub-menu{
 	display: block;
-} 
+}
 .nav-menu > li > ul.sub-menu > li{
 	float: left;
 	width: 40%;
@@ -1555,7 +1557,7 @@ footer a[rel="bookmark"]:link:after,footer a[rel="bookmark"]:visited:after {	con
 .using-science{background-color: #9f0100;color: #fff;font-size: 14px;font-style: italic;font-weight: 500;line-height: 30px;text-align: center;width: 100%;}
 .using-science p{font-weight: 600 !important;}
 .footer-container {margin: 0 auto;padding-bottom: 10px;padding-top: 10px;
-   
+
 }
 .box-product{margin-top: 10px;padding-top: 10px;float: left;}
 .left_cat{text-align:justify;}
@@ -1747,7 +1749,7 @@ a > .title-content:hover{color: #000;}
 .vne_thumbnail{height: 135px;margin: 0px;padding: 0px;}
 .vne_thumbnail img{width: 100%;height: 100%;padding: 0px;}
 .box-cat{background: #fff;min-height: 450px;}
-.box-cat > h1{font-weight: 600;font-size: 22px;width: 100%;margin: 0px;padding: 10px 5px;border-bottom: 1px solid #909090;}
+.box-cat > h1{font-weight: 600;font-size: 22px;width: 100%;margin: 10px 0;padding: 10px 5px;border-bottom: 1px solid #909090;}
 .slide-up {position: absolute;bottom: 0px;width: 97%;margin:0px;padding: 20px 5px 10px 5px;background:transparent linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.8)) repeat scroll 0% 0%;}
 .slide-up a{width:100%;margin: 0px auto;text-align: center;text-decoration: none;}
 .slide-up h3{border-bottom: 1px solid rgba(255, 255, 255, 0.5);color: #fff; font-size: 16px;font-weight: 400;text-transform: none;}
@@ -1846,7 +1848,7 @@ a .header{font-size: 16px;font-weight: bold;color: #fff;text-transform: uppercas
 .thanhtoan {margin:10px 0px;padding: 0px;}
 .thanhtoan > h3{width: 100%;text-align: left;font-size: 14px;font-weight: 400;text-transform: none;color: #000;border-bottom: 1px solid #cdcdcd;}
 .thanhtoan ul{float: left;width: 100%;margin: 0px;padding: 0px;}
-.thanhtoan ul li{width: 100%;float: left;line-height: 25px;margin: 0px;padding: 0px;} 
+.thanhtoan ul li{width: 100%;float: left;line-height: 25px;margin: 0px;padding: 0px;}
 .chu_y{padding: 0px;margin: 10px 0px;float: left;}
 .info{padding: 0px;}
 .info li{padding: 0px 10px 0px 0px;}
@@ -1915,8 +1917,8 @@ a .header{font-size: 16px;font-weight: bold;color: #fff;text-transform: uppercas
 .danh-muc-ve-chung-toi > ul > li{width: 100%;margin: 0px 0px 15px 0px;padding: 0px;float: left;}
 .danh-muc-ve-chung-toi > ul > li > a{width:100%;float:left;font-size: 18px;text-transform: uppercase;color: #000;font-weight: 400;margin: 10px 0px;text-decoration: none;}
 .danh-muc-ve-chung-toi > ul > li > ul{padding: 0px;list-style: none;width: 100%;float: left;background: #f1f1f1;}
-.danh-muc-ve-chung-toi > ul > li > ul > li{padding: 10px 5px;margin: 0px;width: 100%;float: left;height: 35px;overflow: hidden;border-top: 1px solid #cdcdcd;}
-.danh-muc-ve-chung-toi > ul > li > ul > li > a{font-weight: 400;font-size: 14px;color: #000;width: 100%;float: left;text-decoration: none;}
+.danh-muc-ve-chung-toi > ul > li > ul > li{padding: 10px 5px;margin: 0px;width: 100%;float: left;height: auto;overflow: hidden;border-top: 1px solid #cdcdcd;}
+.danh-muc-ve-chung-toi > ul > li > ul > li > a{font-weight: 400;font-size: 14px;color: #000;width: 90%;float: left;text-decoration: none;}
 .danh-muc-select{background: #ffffff url("images/arow-contact.png") right center no-repeat;}
 .danh-muc-select > a{color: #fff;font-weight: 600 !important;}
 .news-post{margin: 0px 0px;padding: 0px 5px;width: 100%;}
@@ -1937,7 +1939,7 @@ height: auto;
 line-height: 21px;
 overflow: hidden;
 border-top: 1px solid #cdcdcd;}
-.danh-muc-bai-viet-moi > ul > li > ul > li > a{font-weight: 400;font-size: 14px;color: #000;width: 100%;float: left;text-decoration: none;}
+.danh-muc-bai-viet-moi > ul > li > ul > li > a{font-weight: 400;font-size: 14px;color: #000;width: 90%;float: left;text-decoration: none;}
 .tinh_thanhpho{margin: 10px 0px;padding: 0px;}
 .contact_left, .contact_right{margin: 5px 0px;padding: 0px;}
 .contact_left{font-size: 15px;font-weight: 600;}
@@ -1980,8 +1982,10 @@ border-top: 1px solid #cdcdcd;}
 .more-link{float: right;margin: 10px 5px;padding: 5px;font-weight: 500;color: #CA2524;}
 .thumb-img{margin: 0px;padding: 0px;}
 .thumb-img img{width: 100%;height: auto;margin: 0px auto;padding: 3px;border:1px solid #cdcdcd;}
-.excerpt-news{margin: 0px;padding: 0px 0px 0px 5px;}
-.excerpt-news a{font-weight: 600;font-size: 14px;margin: 0px 0px 10px 0px;padding: 0px;text-decoration: none;}
+.excerpt-news{margin: 0px;padding: 0px 0px 0px 10px;}
+.excerpt-news a {font-weight: 600;font-size: 16px;margin: 0px 0px 10px 0px;padding: 0px;text-decoration: none;}
+.excerpt-news .news-post-excerpt {font-size: 13px; color: #404040;}
+.excerpt-news a.more-link {font-size: 14px;}
 .excerpt-news span{font-size: 12px;color: #909090;font-weight: 400;}
 .news-post{margin: 0px 0px 10px 0px;padding: 0px;}
 .pagination{width: 100%;float: left;margin:10px;padding: 0px;}
@@ -2033,6 +2037,9 @@ input,textarea{font-weight: 400 !important;font-size: 12px;line-height: 25px;col
 .product-cat{margin:15px 0px;padding: 0px;list-style: none;}
 .image_thumb{margin: 0px;padding: 10px;max-height: 350px;}
 .image_thumb img{width: auto;max-height: 200px;padding: 5px;border: 1px solid #cdcdcd;margin: 0px auto;}
+.vietnt-san-pham .image_thumb img {max-height:120px;}
+.danh-muc-san-pham {}
+
 .title_products{width: 100%;float: left;margin: 0px;padding: 0px;text-align: center;}
 .title_products a{font-size: 16px;font-weight: 400 !important;text-decoration: none;color: #000;line-height: 20px;}
 .price_product{width: 100%;float: left;text-align: center;}
@@ -2191,7 +2198,7 @@ input,textarea{font-weight: 400 !important;font-size: 12px;line-height: 25px;col
     font-size: 14px;
 }
 #punica-top-menu li a:hover,
-#punica-top-menu li a:focus, 
+#punica-top-menu li a:focus,
 #primary-menu li a:hover,
 #primary-menu li a:focus {
 	background: #BC7C00;
@@ -2416,7 +2423,7 @@ h3.widgettitle {
     border: none;
     text-transform: uppercase;
     font-weight: 500;
-    line-height: 30px;  
+    line-height: 30px;
     text-align: left;
     background-size: 10px;
     border-bottom: 2px solid #FF6E2C;
@@ -2590,6 +2597,11 @@ h3.widgettitle {
 .san-pham-hot .btn-buy {
 
 }
+.san-pham-hot .price-product {
+    font-weight: 500;
+    padding: 4px 0;
+    display: inline-block;
+}
 
 /*sub sub category in bai viet moi*/
 ul.sub-category {
@@ -2601,11 +2613,11 @@ ul.sub-category > li {
 }
 
 ul.sub-category > li > a {
-	
+
 }
 
 ul.sub-category > li:hover .sub-sub-category {
-	display: block;
+	// display: block;
 }
 
 li.has-sub-category {
@@ -2640,8 +2652,19 @@ ul.sub-sub-category {
 	color: #1d1d1d;
 }
 
+/* toggle close and open */
+.toggle-open, .toggle-close {
+	padding: 4px 4px;
+    font-size: 14px;
+    color: #000;
+    line-height: 33px;
+    text-align: center;
+    cursor: pointer;
+}
+.toggle-close {display: none;}
+
 li.has-sub-category.open-sub-category > ul {
-    display: block;
+    // display: block;
 }
 
 @media screen and (max-width: 479px) {
@@ -2675,7 +2698,7 @@ li.has-sub-category.open-sub-category > ul {
 	    /*border-left: 1px solid #e2e2e2;*/
 	}
 
-	.sb-search .sb-icon-search, .no-js .sb-search .sb-icon-search {	 
+	.sb-search .sb-icon-search, .no-js .sb-search .sb-icon-search {
 	    background-color: #f99f36;
 	}
 
@@ -2694,7 +2717,7 @@ li.has-sub-category.open-sub-category > ul {
 }
 
 @media screen and (max-width: 1120px) {
-	
+
 }
 
 

@@ -35,7 +35,7 @@
                                             <li class="
                                                 <?php
                                                     if($catid == $sub_value->cat_ID){
-                                                        echo 'danh-muc-select ';                                                
+                                                        echo 'danh-muc-select ';
                                                     }
                                                     if (count($sub_sub_category) > 0) {
                                                         echo 'has-sub-category';
@@ -46,20 +46,32 @@
                                                 <a href="<?php echo $sub_value->slug; ?>" >
                                                     <?php echo $sub_value->name;?> (<?php echo count_port_by_cat($sub_value->cat_ID,'danh-muc-bai-viet-moi');?>)
                                                 </a>
-                                                <?php                                                
+
+                                                <?php
+                                                    if (count($sub_sub_category) > 0) {
+                                                ?>
+                                                <i class="fa fa-minus toggle-close" aria-hidden="true"></i>
+                                                <i class="fa fa-plus toggle-open" aria-hidden="true"></i>
+                                                <?php
+                                                    }
+                                                ?>
+
+                                                <?php
                                                     if (count($sub_sub_category) > 0) {
                                                 ?>
                                                     <ul class="sub-sub-category">
                                                     <?php
                                                         foreach ($sub_sub_category as $key => $sub_sub_value) {
                                                     ?>
-                                                        <li class="<?php 
-                                                            if($catid == $sub_sub_value->cat_ID){
-                                                                echo 'danh-muc-select ';                                                
-                                                            }
-                                                        ?>">
+                                                        <li class="
+                                                            <?php
+                                                                if($catid == $sub_sub_value->cat_ID){
+                                                                    echo 'danh-muc-select has-parent-category';
+                                                                }
+                                                            ?>
+                                                        ">
                                                             <a href="<?php echo get_term_link($sub_sub_value->cat_ID); ?>" >
-                                                                <?php echo $sub_sub_value->name;?>
+                                                                <?php echo $sub_sub_value->name;?> (<?php echo count_port_by_cat($sub_sub_value->cat_ID,'danh-muc-bai-viet-moi');?>)
                                                             </a>
                                                         </li>
                                                     <?php
@@ -76,20 +88,20 @@
                                         ?>
                                         </ul>
                                     </li>
-                                   
+
                             <?php
                                 }
 
                             ?>
                         </ul>
-                       
+
                     </div>
                     <?php if ( is_active_sidebar( 'left-sidebar' ) ) : ?>
                         <?php dynamic_sidebar( 'left-sidebar' ); ?>
                     <?php endif; ?>
                 </div>
-                <div class="box-cat col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                    
+                <div class="box-cat col-xs-12 col-sm-12 col-md-6 col-lg-6 vietnt">
+
 					<?php
                         $arg = array(
                         'post_type' => 'bai-viet-moi',
@@ -106,7 +118,8 @@
                         while($news_post -> have_posts()) :
                             $news_post -> the_post();
                         $countpost = $wp_query->found_posts;
-                        if($countpost == 1){ ?>
+                        if($countpost == -1) { //TODO: this is only for 1 post, we are disabling it.
+                    ?>
                             <div class="news-post">
                                 <h1><?php echo the_title();?></h1>
                                 <li class="info_news_post"><span>Đăng bởi: <?php the_author();?></span><span>Ngày đăng: <?php the_date(); ?></span></li>
@@ -115,7 +128,7 @@
                                 </div>
                             </div>
                     <?php
-                        }else{
+                        } else {
                     ?>
                             <div class="news-post col-xs-12 col-sm-12 col-md-12 col-lg-12">
                             	<div class="thumb-img col-xs-12 col-sm-4 col-md-4 col-lg-4">
@@ -126,15 +139,19 @@
                                 </div>
                                 <div class="excerpt-news col-xs-12 col-sm-8 col-md-8 col-lg-8">
     	                            <a href="<?php the_permalink();?>" title="<?php the_title();?>"><?php echo the_title();?></a>
-    	                            <span class="hidden-xs"><?php the_excerpt();?></span>
+    	                            <div class="news-post-excerpt" class="hidden-xs"><?php echo wp_trim_words(get_the_excerpt(),30);?></div>
+                                    <div class="text-right hidden-xs">
+                                        <a class="more-link" href="<?php the_permalink();?>" title="<?php the_title();?>">Xem chi tiết &rarr;</a>
+                                    </div>
     							</div>
                             </div><!--End .news-post-->
 
-                            <?php } endwhile; 
-                        
-							if(function_exists('wp_pagenavi')) {wp_pagenavi();}
+                        <?php }
+                        endwhile;
+							if(function_exists('wp_pagenavi')) {
+                                wp_pagenavi();
+                            }
                             wp_reset_postdata();
-                        
         			     ?>
                  <?php echo page_nav();?>
                 </div><!--End #news-wrap-->

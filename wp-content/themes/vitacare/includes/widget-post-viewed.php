@@ -15,13 +15,11 @@
 		// $blog_category = empty($instance['blog_category']) ? '': (int) $instance['blog_category'];
 		if(count( $_SESSION['viewed_product'] ) > 0){
 		echo $before_widget;
-	 
 		if( $title )
 		echo $before_title . $title . $after_title;
 	?>
 
 		<div class="innersidebar recenty_viewed">
-	
 			<div class="box_viewed">
 			<?php
 			$list_id_product = array();
@@ -34,39 +32,74 @@
 
 					endforeach;
 
-					endif;
+				endif;
 
-					$args = array( 
+				// for hot product
+				$args_post_hot = array(
+					'orderby' => 'modified',
+					'posts_per_page' => 3,
+					'tax_query' => array(
+						array(
+							'taxonomy' => 'product_cat',
+							'field' => 'slug',
+							'terms' => 'san-pham-hot'
+						)
+					)
+				);
+				$wp_query_post_hot = new WP_Query( $args_post_hot );
+				if ( $wp_query_post_hot->have_posts() ) : 
+					while ( $wp_query_post_hot->have_posts() ) : 
+						$wp_query_post_hot->the_post();?>
+						<ul class="san-pham-hot">
+							<li class="imageorder">
+								<a href="<?php the_permalink();?>"><?php the_post_thumbnail("small");?></a>
+							</li>
+							<li class="titlesorder">
+								<a href="<?php the_permalink();?>"><?php echo get_the_title();?></a>
+							</li>
+							<a class="btn-buy" id="addtocatbutton" data-link="<?php echo get_the_permalink(get_the_ID());?>?add-to-cart=<?php echo get_the_ID();?>" 
+								href="javascript:void(0);" onclick="Add_to_Cart(<?php echo get_the_ID();?>);" >
+								Mua ngay <br/>
+								<span class="price-product">
+									<?php echo number_format(get_post_meta(get_the_ID(), "_regular_price", true));?> VNĐ
+								</span>
+							</a>
+						</ul>
+				<?php
+					endwhile; 
+					wp_reset_query(); 
+				endif;
 
-						'post_type' => 'product',
-
-						'post__in' => $list_id_product,
-
-						'posts_per_page' => $posts_number,
-
-						'post_status' => 'publish',
-
-						);
-
-					$wp_query = new WP_Query( $args );
-
-					if ( $wp_query->have_posts() ) : 
-						while ( $wp_query->have_posts() ) : 
-							$wp_query->the_post();?>
-							<ul class="san-pham-hot">
-								<li class="imageorder">
-									<a href="<?php the_permalink();?>"><?php the_post_thumbnail("small");?></a>
-								</li>
-								<li class="titlesorder">
-									<a href="<?php the_permalink();?>"><?php echo get_the_title();?></a>
-								</li>
-								<a class="btn-buy" id="addtocatbutton" data-link="<?php echo get_the_permalink(get_the_ID());?>?add-to-cart=<?php echo get_the_ID();?>" 
-									href="javascript:void(0);" onclick="Add_to_Cart(<?php echo get_the_ID();?>);" >Mua ngay</a>
-							</ul>
-					<?php
-						endwhile; 
-						wp_reset_query(); 
-					endif;
+				// for viewed product
+				$args = array(
+					'post_type' => 'product',
+					'post__in' => $list_id_product,
+					'posts_per_page' => $posts_number,
+					'post_status' => 'publish',
+					);
+				$wp_query = new WP_Query( $args );
+				if ( $wp_query->have_posts() ) :
+					while ( $wp_query->have_posts() ) : 
+						$wp_query->the_post();?>
+						<ul class="san-pham-hot">
+							<li class="imageorder">
+								<a href="<?php the_permalink();?>"><?php the_post_thumbnail("small");?></a>
+							</li>
+							<li class="titlesorder">
+								<a href="<?php the_permalink();?>"><?php echo get_the_title();?></a>
+							</li>
+							<a class="btn-buy" id="addtocatbutton" data-link="<?php echo get_the_permalink(get_the_ID());?>?add-to-cart=<?php echo get_the_ID();?>" 
+								href="javascript:void(0);" onclick="Add_to_Cart(<?php echo get_the_ID();?>);" >
+								Mua ngay<br/>
+								<span class="price-product">
+									<?php echo number_format(get_post_meta(get_the_ID(), "_regular_price", true));?> VNĐ
+								</span>
+							</a>
+						</ul>
+				<?php
+					endwhile; 
+					wp_reset_query(); 
+				endif;
 			?>
 			</div>
 		</div>
