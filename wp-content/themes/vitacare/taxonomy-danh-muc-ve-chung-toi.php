@@ -21,7 +21,17 @@
                                 $taxonomy  = 'danh-muc-ve-chung-toi';
                                 $this_category = get_categories("&taxonomy=".$taxonomy."&parent=0&hide_empty=0&order=DESC");
                                 foreach ($this_category as $key => $value) { ?>
-                                    <li><span class="title-danh-muc"><a href="<?php echo get_category_link($value->term_id);?>"><?php echo $value->name;?></a></span>
+                                    <li><span class="title-danh-muc"><a href="<?php echo get_category_link($value->term_id);?>"><?php echo $value->name;?></a>
+                                    <?php
+                                        $sub_category = get_categories("&taxonomy=".$taxonomy."&parent=".$value->term_id."&hide_empty=0&order=ASC");
+                                        if (count($sub_category) > 0) {
+                                    ?>
+                                    <i class="fa fa-minus toggle-close-parent" aria-hidden="true"></i>
+                                    <i class="fa fa-plus toggle-open-parent" aria-hidden="true"></i>
+                                    <?php
+                                        }
+                                    ?>
+                                    </span>
                                         <ul class="sub-category">
                                         <?php
                                             $sub_category = get_categories("&taxonomy=".$taxonomy."&parent=".$value->term_id."&hide_empty=0&order=ASC");

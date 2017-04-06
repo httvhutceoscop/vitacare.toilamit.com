@@ -25,7 +25,7 @@ define( 'WPCACHEHOME', '/domains/vitacare.vn/public_html/wp-content/plugins/wp-s
 define('DB_NAME', 'vitacarevn_db');
 
 /** MySQL database username */
-define('DB_USER', 'root');
+define('DB_USER', 'vietnt');
 
 /** MySQL database password */
 define('DB_PASSWORD', '');

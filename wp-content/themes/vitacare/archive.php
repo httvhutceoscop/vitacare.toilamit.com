@@ -12,22 +12,22 @@
 get_header(); ?>
 <a name="top"></a>
 <?php
-		$category = get_category( get_query_var( 'cat' ) );
-		$id_cat = $category->cat_ID;
-		/*$id_cat = get_query_var('cat');*/
-		//echo $category->slug;
-		$parent_cat = $category->parent;
-		$cats_str = get_category_parents($id_cat, false, '%#%');
-		$cats_array = explode('%#%', $cats_str);
-		$cat_depth = sizeof($cats_array)-2;
-		?>
+	$category = get_category( get_query_var( 'cat' ) );
+	$id_cat = $category->cat_ID;
+	/*$id_cat = get_query_var('cat');*/
+	//echo $category->slug;
+	$parent_cat = $category->parent;
+	$cats_str = get_category_parents($id_cat, false, '%#%');
+	$cats_array = explode('%#%', $cats_str);
+	$cat_depth = sizeof($cats_array)-2;
+?>
 
-	
+
 <div class="container">
 		<div class="row">
 
-			<?php if($id_cat != 140){ ?> 
-		 		<div id="columns_left" class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
+			<?php if($id_cat != 140){ ?>
+		 		<div id="columns_left" class="col-xs-12 col-sm-12 col-md-9 col-lg-9 vietnt-category khac-140">
 					<div class="breadcrumbs" typeof="BreadcrumbList" vocab="http://schema.org/">
 					    <?php if(function_exists('bcn_display'))
 					    {
@@ -41,27 +41,27 @@ get_header(); ?>
 								$cat_parent = $cat->category_parent; // Print the ID
 									$this_category1 = get_categories("&parent=".$cat_parent."&hide_empty=0");
 							if($id_cat == 179 || $id_cat == 180 || $id_cat == 181 || $id_cat == 182){}else{
-								
+
 							?>
 							<div class="shop-search">
 								<div class="excerptcontent col-xs-12 col-sm-12 col-md-6 col-lg-6">
 									<?php if (category_description()) :?>
 										<?php echo category_description(); ?>
 									<?php endif; ?>
-									
+
 									<div class="form-inline">
 										<div class="form-group">
 											<label>Liên kết nhanh: </label>
 											<select id="chon_danh_muc" class="form-control">
-												
+
 												<?php foreach($this_category1 as $term) { ?>
 												<option value="<?php echo get_category_link($term->cat_ID);?>"><?php echo $term->name;?></option>
 												<?php } ?>
 											</select>
-										</div>	
+										</div>
 									</div>
-									
-									
+
+
 								</div>
 								<div class="imagethunb hidden-xs col-lg-6">
 								<?php if (function_exists('z_taxonomy_image_url')) { ?>
@@ -69,10 +69,10 @@ get_header(); ?>
 									<?php }else{ } ?>
 								</div>
 							</div><!-- End.Search-->
-						
-							<?php } 
-							}elseif ($id_cat == 118) { 
-								
+
+							<?php }
+							}elseif ($id_cat == 118) {
+								echo 'hi';
 								$cat = get_category( $id_cat );
 								$cat->category_parent; // Print the ID
 								$this_category = get_categories("&parent=".$id_cat."&hide_empty=0");
@@ -93,7 +93,7 @@ get_header(); ?>
 												<option value="<?php echo get_category_link($term->cat_ID);?>"><?php echo $term->name;?></option>
 												<?php } ?>
 											</select>
-										</div>	
+										</div>
 									</div>
 									<?php } ?>
 								</div>
@@ -105,9 +105,9 @@ get_header(); ?>
 							</div><!-- End.Search-->
 						<?php } ?>
 					</div>
-						
+
 					<!-- Phan noi dung hien thi can ban cua danh muc -->
-						
+
 							<?php
 							if($id_cat == 1 || $id_cat == 117 || $id_cat == 118){
 								if($id_cat == 1){?>
@@ -138,21 +138,21 @@ get_header(); ?>
 										 	);
 									query_posts($args);
 									if (have_posts()) : while (have_posts()) : the_post();?>
-									
+
 									<h3 class="title-dm-left"><?php the_title();?></h3>
-									
+
 									<?php
 
 										the_content();
-										
+
 										endwhile;
 										endif;
 										wp_reset_query();?>
 
 										</div>
-										<div class="view-more-cat cat-id-1-117-118">Xem đầy đủ nội dung</div>	
+										<div class="view-more-cat cat-id-1-117-118">Xem đầy đủ nội dung</div>
 									</div>
-									
+
 
 								<?php
 								}
@@ -187,9 +187,9 @@ get_header(); ?>
 									</div>
 									<div class="view-more-cat cat-id-117">Xem đầy đủ nội dung</div>
 								</div>
-								
+
 								<?php
-								}									
+								}
 							}
 
 							else {
@@ -203,13 +203,13 @@ get_header(); ?>
 										 							'key' => 'style_product',
 										 							'value' => 1,
 										 							),
-										 						
+
 										 					),
 										 		);
 								$the_query = new WP_query($args2);
 								$count_posts_0 = $the_query->found_posts;
 								if($count_posts_0 == 1)
-								{ 
+								{
 									$args = array(
 										 	'post_type' => 'post',
 										 	'cat' => $id_cat,
@@ -242,9 +242,9 @@ get_header(); ?>
 										</div>
 										<div class="view-more-cat count_posts_0-1">Xem đầy đủ nội dung</div>
 									</div>
-									
+
 									<?php
-								} 
+								}
 
 								else {
 									$args = array(
@@ -264,14 +264,14 @@ get_header(); ?>
 										 					),
 										 		);
 									query_posts($args);
-									
+
 									?>
 									<div class="left_cat col-xs-12 col-sm-12 col-md-6 col-lg-6">
 										<div id="cat-content">
 										<?php
 										if (have_posts()) : while (have_posts()) : the_post();
 											$categories = get_the_category($post->ID);
-											$cat_id = $categories[0]-> term_id; 
+											$cat_id = $categories[0]-> term_id;
 											if($cat_id == $id_cat)
 											{
 											?>
@@ -285,12 +285,12 @@ get_header(); ?>
 										</div>
 										<div class="view-more-cat count_posts_0">Xem đầy đủ nội dung</div>
 									</div>
-									
+
 									<?php
 								}
 							}
 							?>
-						
+
 						<div class="right_cat col-xs-12 col-sm-12 col-md-6 col-lg-6">
 							<?php
 								$args3 = array(
@@ -334,7 +334,7 @@ get_header(); ?>
 													),
 												),
 											);
-										query_posts($args);			
+										query_posts($args);
 									}else{
 										$args = array(
 										'post_type' => 'post',
@@ -366,7 +366,7 @@ get_header(); ?>
 							<?php
 							if($id_cat == 1 || $id_cat == 117 || $id_cat == 118){
 								if($id_cat == 1){
-									$this_category = get_categories("&parent=".$id_cat."&hide_empty=0&orderby=id&order=ASC"); 
+									$this_category = get_categories("&parent=".$id_cat."&hide_empty=0&orderby=id&order=ASC");
 									foreach($this_category as $term) { ?>
 									<div class="title_category">
 										<?php
@@ -376,18 +376,19 @@ get_header(); ?>
 											'orderby' => 'DESC',
 											'posts_per_page' => 1,
 											'meta_query' => array(
-												array(
-													'key' => 'style_product',
-													'value' => 1,
-													),
-												array(
-													'key' => 'bai_viet_danh_muc_trai',
-													'value' => 1,
-													),
+												// array(
+												// 	'key' => 'style_product',
+												// 	'value' => 1,
+												// 	),
+												// array(
+												// 	'key' => 'bai_viet_danh_muc_trai',
+												// 	'value' => 1,
+												// 	),
 												),
 											);
 										query_posts($args);
 										$count_posts_1 = $wp_query->found_posts;
+										$count_posts_1 = 1; //VietNT added on 05/04/2017
 										if($count_posts_1 > 0){?>
 											<a href="<?php echo get_category_link($term->cat_ID); ?>"><h3 title="title-<?php  echo $term->cat_ID;?>" class="step"><?php echo $term->name;?></h3></a>
 											<?php
@@ -409,7 +410,7 @@ get_header(); ?>
 									<?php }
 								}
 								if($id_cat == 117){
-									$this_category = get_categories("&parent=".$id_cat."&hide_empty=0&orderby=id&order=DESC"); 
+									$this_category = get_categories("&parent=".$id_cat."&hide_empty=0&orderby=id&order=DESC");
 									foreach($this_category as $term) { ?>
 									<div class="title_category">
 										<a href="<?php echo get_category_link($term->cat_ID); ?>"><h3 class="step"><?php echo $term->name;?></h3></a>
@@ -444,10 +445,10 @@ get_header(); ?>
 													'key' => 'style_product',
 													'value' => 1,
 													),
-												array(
-													'key' => 'bai_viet_danh_muc_phai',
-													'value' => 1,
-													),
+												// array(
+												// 	'key' => 'bai_viet_danh_muc_phai',
+												// 	'value' => 1,
+												// 	),
 												),
 											);
 										query_posts($args6);
@@ -482,14 +483,15 @@ get_header(); ?>
 													'key' => 'style_product',
 													'value' => 1,
 													),
-												array(
-													'key' => 'bai_viet_danh_muc_phai',
-													'value' => 1,
-													),
+												// array(
+												// 	'key' => 'bai_viet_danh_muc_phai',
+												// 	'value' => 1,
+												// 	),
 												),
 											);
 										query_posts($args);
 										$count_posts = $wp_query->found_posts;
+										$count_posts = 1; //VietNT add on 05/04/2017
 										if($count_posts > 0){?>
 											<a href="<?php echo get_category_link($term->cat_ID); ?>"><h3 title="title-<?php  echo $term->cat_ID;?>" class="step"><?php echo $term->name;?></h3></a>
 										<?php
@@ -511,7 +513,7 @@ get_header(); ?>
 									<?php }
 								}
 							}
-									
+
 							?>
 							<?php
 								if($id_cat == 144){
@@ -552,10 +554,10 @@ get_header(); ?>
 								}
 							?>
 						</div>
-					<!-- Ket thuc phan hien thi can ban cua danh muc -->				
+					<!-- Ket thuc phan hien thi can ban cua danh muc -->
 					<div class="posts_by_cat">
 						<div class="row box-product-expand">
-						
+
 						<?php
 						$args = array(
 								'post_type' => 'post',
@@ -566,11 +568,11 @@ get_header(); ?>
 													'key' => 'style_product',
 													'value' => 1,
 												),
-											
+
 									),
-								
+
 							);
-						
+
 						query_posts($args);
 						$countpost = $wp_query->found_posts;
 						if($countpost > 0){
@@ -587,13 +589,13 @@ get_header(); ?>
 							<?php endwhile; ?>
 							<?php else : ?>
 								<?php get_template_part( 'content', 'none' ); ?>
-							<?php endif; 
+							<?php endif;
 								wp_reset_query();
 						}?>
 						</div>
 					</div>
 					<div class="box-product">
-						<?php 
+						<?php
 							if($id_cat != 1){
 						?>
 						<div class="row box-product-expand">
@@ -612,7 +614,7 @@ get_header(); ?>
 														),
 
 											),
-										
+
 									);
 								query_posts($args);
 								$countpost = $wp_query->found_posts;
@@ -626,23 +628,22 @@ get_header(); ?>
 								<?php endwhile; ?>
 								<?php else : ?>
 									<?php get_template_part( 'content', 'none' ); ?>
-								<?php endif; 
+								<?php endif;
 									wp_reset_query();
 								?>
 								<?php } ?>
 						</div>
-						<?php 
+						<?php
 							}elseif ($id_cat == 1) { ?>
-					
+
 						<?php
 							}
 						?>
 					</div>
-					
 				</div>
 			<?php }else{ ?>
 			<!-- Phan hien thi danh muc cau hoi -->
-				<div id="columns_left" class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
+				<div id="columns_left" class="col-xs-12 col-sm-12 col-md-9 col-lg-9 vietnt-category">
 				 	<div class="left_wallpage">
 						<div class="breadcrumbs" typeof="BreadcrumbList" vocab="http://schema.org/">
 						    <?php if(function_exists('bcn_display'))
@@ -651,7 +652,7 @@ get_header(); ?>
 						    }?>
 						</div>
 						<div class="overviews col-xs-12 col-sm-12 col-md-12 col-lg-12">
-							<?php 
+							<?php
 								$args = array(
 										'post_type' => 'post',
 										'showposts' => -1,
@@ -666,7 +667,7 @@ get_header(); ?>
 								<li class="question_right col-xs-12 col-ms-12 col-md-12 col-lg-12">
 								<?php if( have_posts()) : while ( have_posts()) : the_post(); ?>
 										<p class="col-xs-12 col-ms-12 col-md-6 col-lg-6"><a href="#<?php echo $post->post_name;?>"><?php the_title();?></a></p>
-								<?php 
+								<?php
 										endwhile;
 									endif;?>
 								</li>
@@ -678,7 +679,7 @@ get_header(); ?>
 											<h3><a name="<?php echo $post->post_name;?>"><?php the_title();?></a></h3>
 											<span class="anser_content"><?php echo wp_trim_words(get_the_content(),300);?></span>
 											<div class="back-to-top"><a href="#top">Back top top</a><a class="morelink" href="<?php the_permalink();?>">Xem thêm ...</a></div>
-									<?php 
+									<?php
 											endwhile;
 										endif;
 										wp_reset_query();
@@ -691,7 +692,7 @@ get_header(); ?>
 				</div>
 			<!-- Ket thuc phan hien thi danh muc cau hoi -->
 				<?php } ?>
-		
+
 			<div id="columns_right" class="col-sm-3 hidden-xs">
 				<?php if ( is_active_sidebar( 'right-sidebar' ) ) : ?>
 	                <?php dynamic_sidebar( 'right-sidebar' ); ?>
@@ -734,7 +735,7 @@ get_header(); ?>
 				overview.css({
 	            	'position':'relative',
 	            	'top':0,
-	            });            
+	            });
 	        };*/
 	    });
 	});

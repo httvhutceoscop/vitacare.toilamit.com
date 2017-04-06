@@ -9,21 +9,35 @@ $catid = 0;
 <div class="main-archive">
 	<div class="container">
 		<div class="row">
-			<div id="sidebar-columns_left" class="col-sm-3 hidden-xs">
-				<div class="danh-muc-bai-viet-moi danh-muc-san-pham">
+			<div id="sidebar-columns_left" class="col-sm-3 hidden-xs vietnt-sidebar-column-left-san-pham" style="margin-top: 20px;">
+				<div class="danh-muc-bai-viet-moi">
 					<ul>
 						<?php
 							$taxonomy  = 'product_cat';
-                            $this_category = get_categories("&taxonomy=".$taxonomy."&parent=0&hide_empty=0&order=DESC");
+                            $this_category = get_categories("&taxonomy=".$taxonomy."&parent=0&hide_empty=0&order=ASC");
                             foreach ($this_category as $key => $value) {
+                            	if ($value->term_id != 437 && $value->term_id != 346) {
+                            		// echo $value->term_id;
 						?>
 						<li>
-							<span class="title-danh-muc"><a href="<?php echo get_category_link($value->term_id);?>"><?php echo $value->name;?></a></span>
+							<span class="title-danh-muc"><a href="<?php echo get_category_link($value->term_id);?>"><?php echo $value->name;?></a>
+							<?php
+								$sub_category = get_categories("&taxonomy=".$taxonomy."&parent=".$value->term_id."&hide_empty=0&order=ASC");
+                                if (count($sub_category) > 0) {
+                            ?>
+                            <i class="fa fa-minus toggle-close-parent" aria-hidden="true"></i>
+                            <i class="fa fa-plus toggle-open-parent" aria-hidden="true"></i>
+                            <?php
+                                }
+                            ?>
+							</span>
                             <ul class="sub-category">
                             <?php
-                                $sub_category = get_categories("&taxonomy=".$taxonomy."&parent=".$value->term_id."&hide_empty=0&order=ASC");
                                 foreach ($sub_category as $key => $sub_value) {
                                     $sub_sub_category = get_categories("&taxonomy=".$taxonomy."&parent=".$sub_value->term_id."&hide_empty=0&order=ASC");
+                                    $a = [278,282,301,303,302,280,277,281];
+
+                                if (!in_array($sub_value->term_id, $a)) {
                             ?>
                                 <li class="
                                     <?php
@@ -77,11 +91,15 @@ $catid = 0;
                                 </li>
 
                             <?php
-                                }
+                                }// endif
+                            }
                             ?>
                             </ul>
                         </li>
-						<?php } ?>
+						<?php
+							}
+						}
+						?>
 					</ul>
                 </div>
 			</div>
@@ -122,7 +140,7 @@ $catid = 0;
 								<span class="regular_price_single">
 									Giá: <?php echo number_format(get_post_meta(get_the_ID(), "_regular_price", true));?> VNĐ
 								</span>
-								<?php 
+								<?php
 							}
 							?>
 							<?php
@@ -135,7 +153,7 @@ $catid = 0;
 				<li class="title_products h_proudct"><a href="<?php echo the_permalink();?>"><?php echo the_title();?></a></li>
 				<div class="star_rating_box col-xs-12 col-sm-12 col-md-12 col-lg-12">
 						<?php
-							echo do_shortcode( '[star_rating themes="flat" id="'.get_the_ID().'"]' ); 
+							echo do_shortcode( '[star_rating themes="flat" id="'.get_the_ID().'"]' );
 						?>
 					</div>
 			</div><!-- #post -->

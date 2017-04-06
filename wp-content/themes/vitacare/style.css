@@ -512,6 +512,7 @@ img.wp-smiley,
 }
 .nav-menu > li:hover > ul.sub-menu{
 	display: block;
+	border: 1px solid #BC7C00;
 }
 .nav-menu > li > ul.sub-menu > li{
 	float: left;
@@ -1924,8 +1925,8 @@ a .header{font-size: 16px;font-weight: bold;color: #fff;text-transform: uppercas
 .news-post{margin: 0px 0px;padding: 0px 5px;width: 100%;}
 .news-post h1{width: 100%;padding: 10px 0px 0px 0px;font-size: 21px;font-weight: 500;margin: 0px;}
 .news-post-content{margin: 0px;padding: 5px;width: 100%;text-align: justify;font-size: 14px;}
-.title-danh-muc{width: 100%;text-transform: uppercase;font-weight: 600;font-size: 16px;color: #fff !important;text-align: center;width: 100%;float: left;padding: 10px 0px;background: #FF6E2C;}
-.title-danh-muc a{color: #fff;}
+.title-danh-muc{width: 100%;text-transform: uppercase;font-weight: 500;font-size: 16px;color: #fff !important;width: 100%;float: left;padding: 7px 10px;background: #fff; border-bottom: 2px solid #f58707;}
+.title-danh-muc a{color: #f58707;}
 .danh-muc-bai-viet-moi{padding: 5px 0px 0px 5px;margin: 0px;width: 100%; }
 .danh-muc-bai-viet-moi > ul{padding: 0px;margin: 0px;width: 100%;list-style: none;}
 .danh-muc-bai-viet-moi > ul > li{width: 100%;margin: 0px 0px 15px 0px;padding: 0px;float: left;background: #f1f1f1;}
@@ -2029,7 +2030,7 @@ input,textarea{font-weight: 400 !important;font-size: 12px;line-height: 25px;col
 .dat-hang a:hover strong{color: #43BF9F !important;}
 .single_product_bottom{margin: 0px;padding: 0px 10px;}
 .woocommerce .star-rating{float: left !important;width: 100%;}
-.promo_price_single,.regular_price_single_,.regular_price_single{font-size: 16px;font-weight:600;}
+.promo_price_single,.regular_price_single_,.regular_price_single,.regular_old_price_single{font-size: 16px;font-weight:600;}
 .regular_price_single_{text-decoration: line-through;}
 .block-price{margin: 10px 0px;padding: 10px;border: 1px solid #cdcdcd;float: left;width: 100%;}
 .product-sidebar{margin: 0px;padding: 0px;}
@@ -2038,7 +2039,6 @@ input,textarea{font-weight: 400 !important;font-size: 12px;line-height: 25px;col
 .image_thumb{margin: 0px;padding: 10px;max-height: 350px;}
 .image_thumb img{width: auto;max-height: 200px;padding: 5px;border: 1px solid #cdcdcd;margin: 0px auto;}
 .vietnt-san-pham .image_thumb img {max-height:120px;}
-.danh-muc-san-pham {}
 
 .title_products{width: 100%;float: left;margin: 0px;padding: 0px;text-align: center;}
 .title_products a{font-size: 16px;font-weight: 400 !important;text-decoration: none;color: #000;line-height: 20px;}
@@ -2586,26 +2586,39 @@ h3.widgettitle {
 
 /*San pham hot*/
 .san-pham-hot {
+	float: left;
+    width: 100%;
+    list-style: none;
+    padding: 0px;
+    margin: 10px 0px;
+}
+.san-pham-hot .product-thumb {
 
 }
-.san-pham-hot li.imageorder img {
+.san-pham-hot .product-thumb img {
+	float: left;
+	width: 40px;
+	margin-right: 10px;
+}
+.san-pham-hot .product-info {
+	float: left;
+	width: 200px;
+}
+.san-pham-hot .product-title {
+	font-size: 13px;
+}
+.san-pham-hot .product-action {
 
 }
-.san-pham-hot li.titlesorder a {
-
-}
-.san-pham-hot .btn-buy {
-
-}
-.san-pham-hot .price-product {
+.san-pham-hot .product-price, .san-pham-hot .product-action {
     font-weight: 500;
-    padding: 4px 0;
-    display: inline-block;
+    padding: 2px 0;
+    // display: inline-block;
 }
 
 /*sub sub category in bai viet moi*/
 ul.sub-category {
-
+	display: none;
 }
 
 ul.sub-category > li {
@@ -2621,7 +2634,7 @@ ul.sub-category > li:hover .sub-sub-category {
 }
 
 li.has-sub-category {
-	padding: 0 !important;
+	padding: 0 0 0 5px !important;
 }
 li.has-sub-category a {
     padding: 10px 0;
@@ -2660,8 +2673,21 @@ ul.sub-sub-category {
     line-height: 33px;
     text-align: center;
     cursor: pointer;
+    user-select: none;
 }
 .toggle-close {display: none;}
+
+.toggle-open-parent, .toggle-close-parent {
+	padding: 4px 4px;
+    font-size: 14px;
+    color: #f58707;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+    float: right;
+    user-select: none;
+}
+.toggle-close-parent {display: none;}
 
 li.has-sub-category.open-sub-category > ul {
     // display: block;
