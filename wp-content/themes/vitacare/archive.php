@@ -186,14 +186,15 @@ get_header(); ?>
 					$count_posts_0 = $the_query->found_posts;
 					if($count_posts_0 == 1) {
 						$args = array(
-							 	'post_type' => 'post',
-							 	'cat' => $id_cat,
-							 	'posts_per_page' => 1,
-							 	'orderby' => 'DESC',
-							 	'meta_query' => array(
-			 						array('key' => 'style_product','value' => 1,),
-			 						array('key' => 'bai_viet_danh_muc_phai','value' => 1,),),
-					 			);
+						 	'post_type' => 'post',
+						 	'cat' => $id_cat,
+						 	'posts_per_page' => 1,
+						 	'orderby' => 'DESC',
+						 	'meta_query' => array(
+		 						array('key' => 'style_product','value' => 1,),
+		 						array('key' => 'bai_viet_danh_muc_trai','value' => 1,),
+		 					),
+			 			);
 						query_posts($args);
 						?>
 						<div class="left_cat col-xs-12 col-sm-12 col-md-6 col-lg-6">
@@ -206,7 +207,6 @@ get_header(); ?>
 							endwhile;
 							endif;
 							wp_reset_query();?>
-
 							</div>
 							<div class="view-more-cat count_posts_0-1">Xem đầy đủ nội dung</div>
 						</div>
@@ -216,7 +216,7 @@ get_header(); ?>
 						$args = array(
 						 	'post_type' => 'post',
 						 	'cat' => $id_cat,
-						 	'posts_per_page' => -1,
+						 	'posts_per_page' => 1,
 						 	'orderby' => 'DESC',
 						 	'meta_query' => array(
 		 						array('key' => 'style_product','value' => 1,),
@@ -230,13 +230,15 @@ get_header(); ?>
 							<?php
 							if (have_posts()) : while (have_posts()) : the_post();
 								$categories = get_the_category($post->ID);
-								$cat_id = $categories[0]-> term_id;
-								if($cat_id == $id_cat)
-								{
-								?>
-									<h3 class="title-dm-left"><?php the_title();?></h3>
-								<?php
-									the_content();
+								foreach ($categories as $category) {
+									$cat_id = $category->term_id;
+									if($cat_id == $id_cat)
+									{
+									?>
+										<h3 class="title-dm-left"><?php the_title();?></h3>
+									<?php
+										the_content();
+									}
 								}
 							endwhile;
 							endif;
@@ -263,6 +265,7 @@ get_header(); ?>
 						);
 						$the_query_3 = new WP_query($args3);
 						$count_posts_3 = $the_query_3->found_posts;
+						$count_posts_3 = 0; //VietNT added on 12/04/2017
 						if($count_posts_3 != 0) {
 							if($id_cat == 1){
 								$args = array(
@@ -272,7 +275,7 @@ get_header(); ?>
 									'orderby' => 'DESC',
 									'meta_query' => array(
 										array('key' => 'style_product','value' => 1,),
-										array('key' => 'bai_viet_danh_muc_trai','value' => 1,),
+										array('key' => 'bai_viet_danh_muc_phai','value' => 1,),
 										array('key' => 'hien_thi_danh_muc_goc','value' => 1,),
 									),
 								);
@@ -285,7 +288,7 @@ get_header(); ?>
 									'orderby' => 'DESC',
 									'meta_query' => array(
 										array('key' => 'style_product','value' => 1,),
-										array('key' => 'bai_viet_danh_muc_trai','value' => 1,),
+										array('key' => 'bai_viet_danh_muc_phai','value' => 1,),
 									),
 								);
 								query_posts($args);
@@ -320,7 +323,7 @@ get_header(); ?>
 									'posts_per_page' => 1,
 									'meta_query' => array(
 										array('key' => 'style_product','value' => 1,),
-										array('key' => 'bai_viet_danh_muc_trai','value' => 1,),
+										array('key' => 'bai_viet_danh_muc_phai','value' => 1,),
 									),
 								);
 								query_posts($args);
@@ -375,7 +378,7 @@ get_header(); ?>
 									'orderby' => 'DESC',
 									'meta_query' => array(
 										array( 'key' => 'style_product','value' => 1,),
-										// array('key' => 'bai_viet_danh_muc_phai','value' => 1,),
+										array('key' => 'bai_viet_danh_muc_phai','value' => 1,),
 									),
 								);
 								query_posts($args6);
