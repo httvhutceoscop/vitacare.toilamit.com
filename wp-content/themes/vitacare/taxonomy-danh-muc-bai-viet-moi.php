@@ -114,11 +114,12 @@
 					<?php
                         $arg = array(
                         'post_type' => 'bai-viet-moi',
+                        'posts_per_page' => 8,
                         'tax_query' => array(
                             array(
                                 'taxonomy' => 'danh-muc-bai-viet-moi',
                                 'field' => 'id',
-                                'terms' => $catid
+                                'terms' => $catid,
                             )
                         ),
                         'paged'=> get_query_var('paged')

@@ -19,8 +19,19 @@
                         <ul>
                             <?php
                                 $taxonomy  = 'danh-muc-ve-chung-toi';
-                                $this_category = get_categories("&taxonomy=".$taxonomy."&parent=0&hide_empty=0&order=DESC");
-                                foreach ($this_category as $key => $value) { ?>
+                                $cat_args = array(
+                                    'taxonomy' => $taxonomy,
+                                    'hide_empty' => 0,
+                                    'orderby'    => 'include',
+                                    'include'    => array( 205, 362, 366, 341 )
+                                );
+                                // $this_category = get_categories("&taxonomy=".$taxonomy."&parent=0&hide_empty=0&orderby=name&order=ASC");
+                                //TODO: fake position of id because changed db
+                                $aIDs = [205, 362, 366, 341];
+                                $this_category = get_categories( $cat_args );
+
+                                foreach ($this_category as $key => $value) { 
+                                    ?>
                                     <li><span class="title-danh-muc"><a href="<?php echo get_category_link($value->term_id);?>"><?php echo $value->name;?></a>
                                     <?php
                                         $sub_category = get_categories("&taxonomy=".$taxonomy."&parent=".$value->term_id."&hide_empty=0&order=ASC");

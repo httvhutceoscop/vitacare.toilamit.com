@@ -16,9 +16,9 @@
 
 get_header(); ?>
 
-		<div class="slideshow hidden-xs hide">
+		<div class="slideshow hidden-xs">
 		 	<?php
-				//echo do_shortcode('[smartslider3 slider=2]');
+				echo do_shortcode('[smartslider3 slider=2]');
 			?>
 		</div>
 
@@ -30,7 +30,7 @@ get_header(); ?>
 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="margin-bottom: 20px;">
 				<h3 class="title_home">Video giới thiệu Vitacare</h3>
 				<div class="video col-xs-12 col-sm-12 col-md-12 col-lg-12">
-					<iframe width="100%" height="auto" src="https://www.youtube.com/embed/dcw1m31zuTE?autoplay=1" frameborder="0" allowfullscreen autoplay="1"></iframe>
+					<iframe width="100%" height="auto" src="https://www.youtube.com/embed/0cPzQkSp6y4?autoplay=1" frameborder="0" allowfullscreen autoplay="1"></iframe>
 				</div>
 			</div>
 			<!-- End Video giới thiệu -->

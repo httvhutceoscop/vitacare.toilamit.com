@@ -14,7 +14,16 @@ $catid = 0;
 					<ul>
 						<?php
 							$taxonomy  = 'product_cat';
-                            $this_category = get_categories("&taxonomy=".$taxonomy."&parent=0&hide_empty=0&order=ASC");
+							$cat_args = array(
+                                    'taxonomy' => $taxonomy,
+                                    'hide_empty' => 0,
+                                    'orderby'    => 'include',
+                                    'include'    => array( 300, 226, 298, 283, 284 )
+                                );
+                            // $this_category = get_categories("&taxonomy=".$taxonomy."&parent=0&hide_empty=0&order=ASC");
+                            //TODO: fake position of id because changed db
+                            $aIDs = [300, 226, 298, 283, 284];
+                            $this_category = get_categories( $cat_args );
                             foreach ($this_category as $key => $value) {
                             	if ($value->term_id != 437 && $value->term_id != 346) {
                             		// echo $value->term_id;

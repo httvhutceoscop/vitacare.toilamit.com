@@ -280,6 +280,13 @@
 		l_parent.find('.sub-category').css({display: 'block'});
 		l_parent.find('.toggle-close-parent').css({display: 'block'});
     });
+
+    //open search box
+    $('#sb-search').hover(function() {
+    	$('#sb-search').addClass('sb-search-open');
+    }, function() {
+    	$('#sb-search').removeClass('sb-search-open');
+    });
 });
 
     </script>

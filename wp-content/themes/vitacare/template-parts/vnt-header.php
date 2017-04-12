@@ -12,7 +12,7 @@
 								<a href="/" class="custom-logo-link" rel="home" itemprop="url">
 									<!-- <img width="82" height="24" src="http://punicatheme.com/demo/avex/wp-content/uploads/sites/5/2016/04/logo-1.png" class="custom-logo" alt="" itemprop="logo"> -->
 									<img width="82" height="24" src="<?php bloginfo('url');?>/wp-content/uploads/2015/vitacare.png" class="custom-logo" alt="" itemprop="logo">
-								</a>					
+								</a>
 							</div> <!-- .site-logo -->
 						</div><!-- .site-branding -->
 					</div><!-- #punica-logo -->
@@ -91,7 +91,7 @@
 					        </div>
 					        <div class="sb-search-wrapper">
 								<div id="sb-search" class="sb-search">
-									<form action="<?php echo esc_url( home_url( '/' ) ); ?> method="get" id="search-form">
+									<form action="<?php echo esc_url( home_url( '/' ) ); ?>" method="get" id="search-form">
 										<input class="sb-search-input" placeholder="Tìm kiếm..." type="text" value="" name="s" id="search">
 										<input class="sb-search-submit" type="submit">
 										<span class="sb-icon-search"></span>
@@ -101,11 +101,8 @@
 							<!-- end:sb-search-wrapper -->
 					    </div>
 					</div>
-					
-
-
 				</div>
-			</div>	
-		</div>	
-	</div>			
+			</div>
+		</div>
+	</div>
 </header>

@@ -86,7 +86,7 @@ include(TEMPLATEPATH . '/includes/widget-post-viewed.php');
 
 include(TEMPLATEPATH . '/includes/widget-post-hot.php');
 
-
+include(TEMPLATEPATH . '/includes/widget-post-new.php');
 
 /**
 
@@ -328,17 +328,17 @@ function twentythirteen_fonts_url() {
 
 add_filter('authenticate', function($user, $email, $password){
 
- 
+
 
     //Check for empty fields
 
-        if(empty($email) || empty ($password)){        
+        if(empty($email) || empty ($password)){
 
             //create new error object and add errors to it.
 
             $error = new WP_Error();
 
- 
+
 
             if(empty($email)){ //No email
 
@@ -352,7 +352,7 @@ add_filter('authenticate', function($user, $email, $password){
 
             }
 
- 
+
 
             if(empty($password)){ //No password
 
@@ -360,19 +360,19 @@ add_filter('authenticate', function($user, $email, $password){
 
             }
 
- 
+
 
             return $error;
 
         }
 
- 
+
 
         //Check if user exists in WordPress database
 
         $user = get_user_by('email', $email);
 
- 
+
 
         //bad email
 
@@ -1594,13 +1594,13 @@ INNER JOIN xtl_term_relationships t on t.object_id = p.ID
 
 	<?php
 
-	
+
 
         } else {
 
        ?>
 
-		
+
 
     <?php    }
 
@@ -2563,7 +2563,7 @@ add_action('wp_ajax_nopriv_dshuyen_ajax', 'dshuyen_ajax');
 
 function dshuyen_ajax() {
 
-    $id = $_POST['matinh']; //Lay parameter tu request 
+    $id = $_POST['matinh']; //Lay parameter tu request
 
     global $wpdb;
 
@@ -2593,7 +2593,7 @@ add_action('wp_ajax_nopriv_dsxa_ajax', 'dsxa_ajax');
 
 function dsxa_ajax() {
 
-    $id = $_POST['mahuyen']; //Lay parameter tu request 
+    $id = $_POST['mahuyen']; //Lay parameter tu request
 
     global $wpdb;
 
@@ -2623,7 +2623,7 @@ add_image_size( "thumb-images", 350, 350, true );
 
 function donvi_taxonomy() {
   register_taxonomy(
-            'don_vi', //The name of the taxonomy. Name should be in slug form (must not contain capital letters or spaces). 
+            'don_vi', //The name of the taxonomy. Name should be in slug form (must not contain capital letters or spaces).
             'product', //post type name
             array(
               'hierarchical' => true,
@@ -2632,7 +2632,7 @@ function donvi_taxonomy() {
         'show_in_nav_menus' => true,
         'rewrite' => array(
             'slug' => 'don-vi', // This controls the base slug that will display before each term
-            'with_front' => false // Don't display the category base before 
+            'with_front' => false // Don't display the category base before
             )
         )
             );
@@ -2758,9 +2758,9 @@ function theme_settings_page()
 	    <form method="post" action="options.php">
 	        <?php
 	            settings_fields("section");
-	            do_settings_sections("theme-options");      
-	            submit_button(); 
-	        ?>          
+	            do_settings_sections("theme-options");
+	            submit_button();
+	        ?>
 	    </form>
 		</div>
 	<?php
@@ -2847,7 +2847,7 @@ function display_hang_order()
 function display_theme_panel_fields()
 {
 	add_settings_section("section", "All Settings", null, "theme-options");
-	
+
 	add_settings_field("email_email", "Địa chỉ Email", "display_email", "theme-options", "section");
     add_settings_field("phone_phone", "Số điện thoại", "display_phone", "theme-options", "section");
     add_settings_field("option1", "Tùy chọn 1", "display_option1", "theme-options", "section");
@@ -2945,7 +2945,7 @@ function add_custom_stock_type() {
         jQuery('._stock_status_field').not('.custom-stock-status').remove();
     });
     </script>
-    <?php   
+    <?php
 
     woocommerce_wp_select( array( 'id' => '_stock_status', 'wrapper_class' => 'hide_if_variable custom-stock-status', 'label' => __( 'Stock status', 'woocommerce' ), 'options' => array(
         'instock' => __( 'In stock', 'woocommerce' ),
@@ -2961,7 +2961,7 @@ add_action('woocommerce_process_product_meta', 'save_custom_stock_status',99,1);
 
 
 function count_port_by_cat($id_cat,$slug_cat){
-	$term = get_term( $id_cat, $slug_cat ); 
+	$term = get_term( $id_cat, $slug_cat );
 	$count = $term->count;
 	return $count;
 }
