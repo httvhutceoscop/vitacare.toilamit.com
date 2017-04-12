@@ -31,7 +31,7 @@ get_header(); ?>
 <div class="container">
 	<div class="row">
 		<?php if($id_cat != 140){ ?>
-	 		<div id="columns_left" class="col-xs-12 col-sm-12 col-md-9 col-lg-9 vietnt-category khac-140">
+	 		<div id="columns_left" class="col-xs-12 col-sm-12 col-md-9 col-lg-9 vietnt-category khac-140 tag-id-<?php echo $id_cat;?>">
 				<div class="breadcrumbs" typeof="BreadcrumbList" vocab="http://schema.org/">
 				    <?php if(function_exists('bcn_display')) {
 				        bcn_display();
@@ -197,7 +197,7 @@ get_header(); ?>
 			 			);
 						query_posts($args);
 						?>
-						<div class="left_cat col-xs-12 col-sm-12 col-md-6 col-lg-6">
+						<div class="left_cat col-xs-12 col-sm-12 col-md-6 col-lg-6 vietnt-bang-1">
 							<div id="cat-content">
 							<?php
 							if (have_posts()) : while (have_posts()) : the_post(); ?>
@@ -216,16 +216,16 @@ get_header(); ?>
 						$args = array(
 						 	'post_type' => 'post',
 						 	'cat' => $id_cat,
-						 	'posts_per_page' => 1,
+						 	// 'posts_per_page' => 1,
 						 	'orderby' => 'DESC',
 						 	'meta_query' => array(
 		 						array('key' => 'style_product','value' => 1,),
 		 						array('key' => 'bai_viet_danh_muc_trai','value' => 1,),
 		 					),
 				 		);
-						query_posts($args);
+						$qr = query_posts($args);
 						?>
-						<div class="left_cat col-xs-12 col-sm-12 col-md-6 col-lg-6">
+						<div class="left_cat col-xs-12 col-sm-12 col-md-6 col-lg-6 vietnt-khac-1">
 							<div id="cat-content">
 							<?php
 							if (have_posts()) : while (have_posts()) : the_post();
